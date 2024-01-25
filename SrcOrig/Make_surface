@@ -1,0 +1,108 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_surface                                               #
+#                                                                              #
+#     This file specifies the macros definition of the surface command.        #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 2002/07/03                                                 #
+#     Modification: 2003/05/19, 2003/07/15, 2003/11/05, 2003/11/05,            #
+#                   2003/12/12, 2004/01/09, 2004/03/05, 2004/04/15,            #
+#                   2004/06/10, 2005/02/10, 2005/08/05, 2006/01/10,            #
+#                   2006/12/04, 2007/01/05, 2007/01/20, 2007/07/30,            #
+#                   2008/04/17, 2008/05/02, 2008/10/10, 2009/03/12,            #
+#                   2010/05/17, 2011/11/10, 2013/02/13, 2013/10/08             #
+#                                                                              #
+################################################################################
+
+MAINOBJ = surface.o
+
+OBJS    = allocgrp.o\
+          allociot.o\
+          allocsfc.o\
+          castgrp_single.o\
+          castname_single.o\
+          chkerr_single.o\
+          chkkind.o\
+          chkmxn.o\
+          chknlsfc.o\
+          chkopen_single.o\
+          chkstd_single.o\
+          comdays.o\
+          comerr.o\
+          comfile.o\
+          comgrp.o\
+          comindx.o\
+          comionum.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comname.o\
+          comphy.o\
+          comsave.o\
+          comsfc.o\
+          comstd.o\
+          cpondpe_single.o\
+          cpondsfc.o\
+          currpe.o\
+          defdim.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          estimsfc.o\
+          getcname.o\
+          getdate.o\
+          getiname.o\
+          getindx.o\
+          getname.o\
+          getrij.o\
+          getrname.o\
+          getunit.o\
+          getxy.o\
+          hint2d.o\
+          hintlnd.o\
+          inichar.o\
+          inidef.o\
+          inimpi_single.o\
+          ininame.o\
+          ll2xy.o\
+          numchar.o\
+          outsfc.o\
+          outsst.o\
+          outstd01.o\
+          outstd02.o\
+          outstd03.o\
+          outstd04.o\
+          outstd05.o\
+          outstd12.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          putunit.o\
+          rdconf.o\
+          rdgrp.o\
+          rdice.o\
+          rdland.o\
+          rdsst.o\
+          setcst2d.o\
+          setdays.o\
+          setdim.o\
+          setname.o\
+          setnlsfc.o\
+          setproj.o\
+          sfcdrv.o\
+          sststep.o\
+          undefice.o\
+          undefsst.o\
+          xy2ij.o\
+          xy2ll.o
+
+m_castgrp.mod  : castgrp_single.o
+m_castname.mod : castname_single.o
+m_chkerr.mod   : chkerr_single.o
+m_chkopen.mod  : chkopen_single.o
+m_chkstd.mod   : chkstd_single.o
+m_cpondpe.mod  : cpondpe_single.o
+m_endmpi.mod   : endmpi_single.o
+m_inimpi.mod   : inimpi_single.o

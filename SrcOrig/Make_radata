@@ -1,0 +1,123 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_radata                                                #
+#                                                                              #
+#     This file specifies the macros definition of the radata command.         #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 2002/09/09                                                 #
+#     Modification: 2003/05/19, 2003/11/05, 2003/12/12, 2004/01/09,            #
+#                   2004/03/05, 2004/04/15, 2004/06/10, 2004/09/01,            #
+#                   2005/02/10, 2005/08/05, 2006/01/10, 2006/12/04,            #
+#                   2007/01/05, 2007/01/20, 2007/05/07, 2007/07/30,            #
+#                   2008/04/17, 2008/05/02, 2008/10/10, 2009/03/12,            #
+#                   2010/05/17, 2013/02/13, 2013/10/08                         #
+#                                                                              #
+################################################################################
+
+MAINOBJ = radata.o
+
+OBJS    = allocgrp.o\
+          allociot.o\
+          allocrdr.o\
+          bc2d.o\
+          castgrp_single.o\
+          castname_single.o\
+          chkerr_single.o\
+          chkfile.o\
+          chkkind.o\
+          chkmxn.o\
+          chknlrdr.o\
+          chkopen_single.o\
+          chkrdr.o\
+          chkstd_single.o\
+          comdays.o\
+          comerr.o\
+          comfile.o\
+          comgrp.o\
+          comindx.o\
+          comionum.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comname.o\
+          comphy.o\
+          comrdr.o\
+          comsave.o\
+          comstd.o\
+          copy1d.o\
+          copy3d.o\
+          cpondpe_single.o\
+          currpe.o\
+          dbz2kg.o\
+          defdim.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          getcname.o\
+          getdate.o\
+          getiname.o\
+          getindx.o\
+          getname.o\
+          getrij.o\
+          getrname.o\
+          gettrn.o\
+          getunit.o\
+          getxy.o\
+          getz.o\
+          getzph.o\
+          hintrdr.o\
+          inichar.o\
+          inidef.o\
+          inimpi_single.o\
+          ininame.o\
+          intrprdr.o\
+          ll2xy.o\
+          numchar.o\
+          outrdr.o\
+          outstd01.o\
+          outstd02.o\
+          outstd03.o\
+          outstd04.o\
+          outstd05.o\
+          outstd12.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          phycood.o\
+          putunit.o\
+          rdconf.o\
+          rdgrp.o\
+          rdradar.o\
+          rdrdrv.o\
+          rdrstep.o\
+          rdtrn.o\
+          rotuvm2s.o\
+          rotuvs2m.o\
+          setcst1d.o\
+          setcst2d.o\
+          setcst3d.o\
+          setdays.o\
+          setdim.o\
+          setname.o\
+          setnlrdr.o\
+          setproj.o\
+          stretch.o\
+          var8w8s.o\
+          var8w8u.o\
+          var8w8v.o\
+          vint133r.o\
+          vint31r.o\
+          vintrdr.o\
+          xy2ij.o\
+          xy2ll.o
+
+m_castgrp.mod  : castgrp_single.o
+m_castname.mod : castname_single.o
+m_chkerr.mod   : chkerr_single.o
+m_chkopen.mod  : chkopen_single.o
+m_chkstd.mod   : chkstd_single.o
+m_cpondpe.mod  : cpondpe_single.o
+m_endmpi.mod   : endmpi_single.o
+m_inimpi.mod   : inimpi_single.o

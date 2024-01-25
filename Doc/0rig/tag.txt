@@ -1,0 +1,8 @@
+Memorandum: 2011/09/22
+
+  Check following procedures
+
+  inidisbw: Check log() function
+  swadjst : Check log() function
+  termbw2d: Check log() function
+  termbw3d: Check log() function

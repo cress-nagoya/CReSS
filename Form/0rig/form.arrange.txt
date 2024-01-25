@@ -1,0 +1,26 @@
+################################################################################
+#                                                                              #
+#     Grouped domain arrangement input file, form.arrange.txt                  #
+#                                                                              #
+#     Grouped domain arrangemnet in entire domain is defined                   #
+#     in following format.                                                     #
+#                                                                              #
+#     Author          : Sakakibara Atsushi                                     #
+#     Date            : 2006/12/04                                             #
+#     Modification    : 2007/01/05, 2008/10/10                                 #
+#                                                                              #
+#     Number of colunm: corresponding to xgroup                                #
+#     Number of row   : corresponding to ygroup                                #
+#                                                                              #
+#     Specifier 'x'   : group domain is not posted                             #
+#     Specifier 'o'   : group domain is posted                                 #
+#                                                                              #
+################################################################################
+xxxxxooo
+xxxxxooo
+xxxxooox
+xxxoooox
+xoooooox
+ooooooxx
+ooooxxxx
+oooxxxxx

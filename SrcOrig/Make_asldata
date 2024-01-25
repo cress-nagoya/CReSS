@@ -1,0 +1,113 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_asldata                                               #
+#                                                                              #
+#     This file specifies the macros definition of the asldata command.        #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 2011/09/22                                                 #
+#     Modification: 2013/02/13, 2013/10/08                                     #
+#                                                                              #
+################################################################################
+
+MAINOBJ = asldata.o
+
+OBJS    = allocasl.o\
+          allocgrp.o\
+          allociot.o\
+          asldrv.o\
+          aslstep.o\
+          bc2d.o\
+          castgrp_single.o\
+          castname_single.o\
+          chkasl.o\
+          chkerr_single.o\
+          chkfile.o\
+          chkkind.o\
+          chkmxn.o\
+          chknlasl.o\
+          chkopen_single.o\
+          chkstd_single.o\
+          comasl.o\
+          comdays.o\
+          comerr.o\
+          comfile.o\
+          comgrp.o\
+          comindx.o\
+          comionum.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comname.o\
+          comphy.o\
+          comsave.o\
+          comstd.o\
+          copy1d.o\
+          copy3d.o\
+          cpondpe_single.o\
+          currpe.o\
+          defdim.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          getcname.o\
+          getdate.o\
+          getiname.o\
+          getindx.o\
+          getname.o\
+          getrij.o\
+          getrname.o\
+          gettrn.o\
+          getunit.o\
+          getxy.o\
+          getz.o\
+          getzph.o\
+          hint3d.o\
+          inichar.o\
+          inidef.o\
+          inimpi_single.o\
+          ininame.o\
+          intrpasl.o\
+          ll2xy.o\
+          numchar.o\
+          outasl.o\
+          outstd01.o\
+          outstd02.o\
+          outstd03.o\
+          outstd04.o\
+          outstd05.o\
+          outstd12.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          phycood.o\
+          putunit.o\
+          rdaero.o\
+          rdconf.o\
+          rdgrp.o\
+          rdtrn.o\
+          setcst1d.o\
+          setcst2d.o\
+          setcst3d.o\
+          setcst4d.o\
+          setdays.o\
+          setdim.o\
+          setname.o\
+          setnlasl.o\
+          setproj.o\
+          stretch.o\
+          var8w8s.o\
+          vint133a.o\
+          vint31a.o\
+          xy2ij.o\
+          xy2ll.o
+
+m_castgrp.mod  : castgrp_single.o
+m_castname.mod : castname_single.o
+m_chkerr.mod   : chkerr_single.o
+m_chkopen.mod  : chkopen_single.o
+m_chkstd.mod   : chkstd_single.o
+m_cpondpe.mod  : cpondpe_single.o
+m_endmpi.mod   : endmpi_single.o
+m_inimpi.mod   : inimpi_single.o

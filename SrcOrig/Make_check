@@ -1,0 +1,57 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_check                                                 #
+#                                                                              #
+#     This file specifies the macros definition of the check command.          #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 2004/05/31                                                 #
+#     Modification: 2004/06/10, 2005/02/10, 2005/11/22, 2006/12/04,            #
+#                   2007/01/20, 2007/07/30, 2008/05/02, 2008/10/10,            #
+#                   2008/12/11, 2009/03/12, 2010/05/17, 2013/10/08             #
+#                                                                              #
+################################################################################
+
+MAINOBJ = check.o
+
+OBJS    = chkerr_single.o\
+          chkkind.o\
+          chkname.o\
+          chknlgpv.o\
+          chknlrdr.o\
+          chknlrst.o\
+          chknlsfc.o\
+          chknlslv.o\
+          chknltrn.o\
+          chknluni.o\
+          chkstd_single.o\
+          comerr.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comphy.o\
+          comstd.o\
+          cpondpe_single.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          ini0name.o\
+          inichar.o\
+          inierr.o\
+          inimpi_single.o\
+          numchar.o\
+          outstd01.o\
+          outstd02.o\
+          outstd04.o\
+          outstd05.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          rdconf.o
+
+m_chkerr.mod  : chkerr_single.o
+m_chkstd.mod  : chkstd_single.o
+m_cpondpe.mod : cpondpe_single.o
+m_endmpi.mod  : endmpi_single.o
+m_inimpi.mod  : inimpi_single.o

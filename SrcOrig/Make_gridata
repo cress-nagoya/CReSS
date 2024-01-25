@@ -1,0 +1,151 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_gridata                                               #
+#                                                                              #
+#     This file specifies the macros definition of the gridata command.        #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 1999/05/20                                                 #
+#     Modification: 1999/06/07, 1999/06/14, 1999/06/21, 1999/06/28,            #
+#                   1999/08/03, 1999/08/09, 1999/08/18, 1999/08/23,            #
+#                   1999/09/06, 1999/09/30, 1999/10/07, 1999/11/19,            #
+#                   2000/03/23, 2000/04/18, 2000/10/18, 2000/12/18,            #
+#                   2001/01/15, 2001/03/13, 2001/04/15, 2001/06/29,            #
+#                   2002/06/18, 2003/05/19, 2003/11/05, 2003/12/12,            #
+#                   2004/01/09, 2004/03/05, 2004/04/15, 2004/06/10,            #
+#                   2004/07/01, 2004/08/01, 2004/09/01, 2005/02/10,            #
+#                   2005/04/04, 2005/08/05, 2006/01/10, 2006/12/04,            #
+#                   2007/01/05, 2007/01/20, 2007/05/07, 2007/06/27,            #
+#                   2007/07/30, 2008/04/17, 2008/05/02, 2008/07/01,            #
+#                   2008/08/19, 2008/10/10, 2008/12/11, 2009/03/12,            #
+#                   2010/05/17, 2011/12/17, 2013/02/13, 2013/10/08             #
+#                                                                              #
+################################################################################
+
+MAINOBJ = gridata.o
+
+OBJS    = allocgpv.o\
+          allocgrp.o\
+          allociot.o\
+          bc2d.o\
+          castgrp_single.o\
+          castname_single.o\
+          chkerr_single.o\
+          chkfile.o\
+          chkgpv.o\
+          chkkind.o\
+          chkmxn.o\
+          chknlgpv.o\
+          chkopen_single.o\
+          chksat.o\
+          chkstd_single.o\
+          comdays.o\
+          comerr.o\
+          comfile.o\
+          comgpv.o\
+          comgrp.o\
+          comindx.o\
+          comionum.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comname.o\
+          comphy.o\
+          comsave.o\
+          comstd.o\
+          copy1d.o\
+          copy2d.o\
+          copy3d.o\
+          cpondpe_single.o\
+          cpondtrn.o\
+          currpe.o\
+          defdim.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          get1d.o\
+          getbase.o\
+          getcname.o\
+          getdate.o\
+          getiname.o\
+          getindx.o\
+          getkref.o\
+          getname.o\
+          getnews.o\
+          getrij.o\
+          getrname.o\
+          gettrn.o\
+          getunit.o\
+          getxy.o\
+          getz.o\
+          getz11.o\
+          getzph.o\
+          gpvdrv.o\
+          gpvstep.o\
+          hint2d.o\
+          hint3d.o\
+          inichar.o\
+          inidef.o\
+          inimpi_single.o\
+          ininame.o\
+          intrpgpv.o\
+          ll2xy.o\
+          newsindx.o\
+          numchar.o\
+          outgpv.o\
+          outstd01.o\
+          outstd02.o\
+          outstd03.o\
+          outstd04.o\
+          outstd05.o\
+          outstd12.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          outtrn.o\
+          pc2kg.o\
+          phycood.o\
+          putunit.o\
+          rdconf.o\
+          rdgpv.o\
+          rdgrp.o\
+          rdsfcdmp.o\
+          rdtrn.o\
+          rotuvm2s.o\
+          rotuvs2m.o\
+          setcst1d.o\
+          setcst2d.o\
+          setcst3d.o\
+          setdays.o\
+          setdim.o\
+          setname.o\
+          setnlgpv.o\
+          setproj.o\
+          sparprt.o\
+          stretch.o\
+          t2pt.o\
+          trndamp.o\
+          var8w8s.o\
+          var8w8u.o\
+          var8w8v.o\
+          vextlow.o\
+          vextund.o\
+          vint11.o\
+          vint13.o\
+          vint133g.o\
+          vint31g.o\
+          vint31uv.o\
+          vintbase.o\
+          vintgpv.o\
+          xy2ij.o\
+          xy2ll.o
+
+m_castgrp.mod  : castgrp_single.o
+m_castname.mod : castname_single.o
+m_chkerr.mod   : chkerr_single.o
+m_chkopen.mod  : chkopen_single.o
+m_chkstd.mod   : chkstd_single.o
+m_cpondpe.mod  : cpondpe_single.o
+m_endmpi.mod   : endmpi_single.o
+m_inimpi.mod   : inimpi_single.o

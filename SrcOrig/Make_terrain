@@ -1,0 +1,99 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_terrain                                               #
+#                                                                              #
+#     This file specifies the macros definition of the terrain command.        #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 1999/04/06                                                 #
+#     Modification: 1999/05/10, 1999/06/07, 1999/06/14, 1999/06/21,            #
+#                   1999/06/28, 1999/08/23, 1999/09/30, 2000/04/18,            #
+#                   2000/06/01, 2000/10/18, 2001/01/15, 2001/04/15,            #
+#                   2002/06/18, 2003/05/19, 2003/11/05, 2003/11/05,            #
+#                   2003/12/12, 2004/01/09, 2004/03/05, 2004/04/15,            #
+#                   2004/06/10, 2005/02/10, 2005/08/05, 2006/01/10,            #
+#                   2006/12/04, 2007/01/05, 2007/01/20, 2007/07/30,            #
+#                   2008/04/17, 2008/05/02, 2008/10/10, 2009/03/12,            #
+#                   2010/05/17, 2013/02/13, 2013/10/08                         #
+#                                                                              #
+################################################################################
+
+MAINOBJ = terrain.o
+
+OBJS    = allocgrp.o\
+          allociot.o\
+          alloctrn.o\
+          castgrp_single.o\
+          castname_single.o\
+          chkerr_single.o\
+          chkkind.o\
+          chkmxn.o\
+          chknltrn.o\
+          chkopen_single.o\
+          chkstd_single.o\
+          comerr.o\
+          comfile.o\
+          comgrp.o\
+          comindx.o\
+          comionum.o\
+          comkind.o\
+          commath.o\
+          commpi.o\
+          comname.o\
+          comphy.o\
+          comsave.o\
+          comstd.o\
+          comtrn.o\
+          cpondpe_single.o\
+          currpe.o\
+          defdim.o\
+          defname.o\
+          destroy.o\
+          endmpi_single.o\
+          getcname.o\
+          getiname.o\
+          getindx.o\
+          getname.o\
+          getrij.o\
+          getrname.o\
+          getunit.o\
+          getxy.o\
+          hint2d.o\
+          inichar.o\
+          inidef.o\
+          inimpi_single.o\
+          ininame.o\
+          ll2xy.o\
+          numchar.o\
+          outstd01.o\
+          outstd02.o\
+          outstd03.o\
+          outstd04.o\
+          outstd05.o\
+          outstd12.o\
+          outstd13.o\
+          outstd14.o\
+          outstd15.o\
+          outstd16.o\
+          outtrn.o\
+          putunit.o\
+          rdconf.o\
+          rdgrp.o\
+          rdheight.o\
+          setcst2d.o\
+          setdim.o\
+          setname.o\
+          setnltrn.o\
+          setproj.o\
+          trndrv.o\
+          xy2ij.o\
+          xy2ll.o
+
+m_castgrp.mod  : castgrp_single.o
+m_castname.mod : castname_single.o
+m_chkerr.mod   : chkerr_single.o
+m_chkopen.mod  : chkopen_single.o
+m_chkstd.mod   : chkstd_single.o
+m_cpondpe.mod  : cpondpe_single.o
+m_endmpi.mod   : endmpi_single.o
+m_inimpi.mod   : inimpi_single.o

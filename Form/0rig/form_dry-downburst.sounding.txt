@@ -1,0 +1,23 @@
+################################################################################
+#                                                                              #
+#     One dimensional sounding input file, form_dry-downburst.sounding.txt     #
+#                                                                              #
+#     This is the dry downburst simulation data.                               #
+#                                                                              #
+#     Author       : Sakakibara Atsushi                                        #
+#     Date         : 1999/07/05                                                #
+#     Modification : 1999/11/19, 2008/10/10                                    #
+#                                                                              #
+#     1st column: height [m]                                                   #
+#     2nd column: potential temperature [K]                                    #
+#     3rd column: x components of velocity [m/s]                               #
+#     4th column: y components of velocity [m/s]                               #
+#     5th column: relative humidity [%]                                        #
+#                                                                              #
+################################################################################
+20000.e0 300.e0 0.e0 0.e0 0.e0
+16000.e0 300.e0 0.e0 0.e0 0.e0
+12000.e0 300.e0 0.e0 0.e0 0.e0
+ 8000.e0 300.e0 0.e0 0.e0 0.e0
+ 4000.e0 300.e0 0.e0 0.e0 0.e0
+    0.e0 300.e0 0.e0 0.e0 0.e0
