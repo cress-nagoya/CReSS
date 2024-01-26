@@ -1,7 +1,7 @@
 Cloud-Resolving Storm Simulator (CReSS) project
 
 # What is CReSS?
-Cloud-Resolving Storm Simulator (CReSS) is a nonhydrostatic and regional atmosphere model. 
+Cloud-Resolving Storm Simulator (CReSS) is a nonhydrostatic and regional atmosphere model for numerical simulations of tropical cyclones, thunderstorms, tornados, and other severe weather phenomena. 
 
 The CReSS model is implemented in the Fortran 90 language.
 For parallel computing, multithread parallelization is supprted by OpenMP, and process parallelization is supported by MPI.
