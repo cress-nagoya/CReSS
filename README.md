@@ -10,3 +10,6 @@ For parallel computing, multithread parallelization is supprted by OpenMP, and p
 
 # How to use
 Please see [Doc/0rig/readme_first.txt](https://cress-nagoya.github.io/CReSS/Doc/0rig/readme_first.txt). 
+
+# Examples
+You can find examples of the configuration and setting file for the CReSS model simulation in `Form/0rig/`. 
