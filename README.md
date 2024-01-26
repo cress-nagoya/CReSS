@@ -1,4 +1,12 @@
-# CReSS
-This is the development repository for [Cloud-Resolving Storm Simulator; CReSS](http://www.rain.hyarc.nagoya-u.ac.jp/%7Etsuboki/kibanS2/src_eng/cress_synopsis_eng.html) developed by Kazuhisa Tsuboki (Nagoya University), Atsushi Sakakibara (Chuden CTI Co.,Ltd.), and many researchers and technicians. 
+Cloud-Resolving Storm Simulator (CReSS) project
 
-Now, the codes of the CReSS model has been opened on the GitHub. 
+# What is CReSS?
+Cloud-Resolving Storm Simulator (CReSS) is a nonhydrostatic and regional atmosphere model. 
+
+The CReSS model is implemented in the Fortran 90 language.
+For parallel computing, multithread parallelization is supprted by OpenMP, and process parallelization is supported by MPI.
+
+[More information](http://www.rain.hyarc.nagoya-u.ac.jp/%7Etsuboki/kibanS2/src_eng/cress_synopsis_eng.html)
+
+# How to use
+Please see [Doc/0rig/readme_first.txt](https://cress-nagoya.github.io/CReSS/Doc/0rig/readme_first.txt). 
