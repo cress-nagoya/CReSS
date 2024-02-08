@@ -1,6 +1,6 @@
 Cloud-Resolving Storm Simulator (CReSS) project
 
-# Tentative announcement! (Satoki Tsujino)
+# Tentative announcement on retag! (Satoki Tsujino)
 Ok, I messed up, and I pushed out an earlier version tagged as "v3.5.1m". I then fixed something, and retagged the fixed tree as "v3.5.1m" again. If you got the wrong tag, and want the new one, please delete the old one and fetch the new one by doing:
 ```
 git tag -d v3.5.1m
