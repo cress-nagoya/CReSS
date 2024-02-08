@@ -1,5 +1,17 @@
 Cloud-Resolving Storm Simulator (CReSS) project
 
+# Tentative announcement! (Satoki Tsujino)
+Ok, I messed up, and I pushed out an earlier version tagged as "v3.5.1m". I then fixed something, and retagged the fixed tree as "v3.5.1m" again. If you got the wrong tag, and want the new one, please delete the old one and fetch the new one by doing:
+```
+git tag -d v3.5.1m
+git fetch origin tag v3.5.1m
+```
+to get my updated tag. You can test which tag you have by doing
+```
+git rev-parse v3.5.1m
+```
+which should return 3cb960025348.. if you have the new version. Sorry for the inconvenience.
+
 # What is CReSS?
 Cloud-Resolving Storm Simulator (CReSS) is a nonhydrostatic and regional atmosphere model for numerical simulations of tropical cyclones, thunderstorms, tornados, and other severe weather phenomena. 
 
