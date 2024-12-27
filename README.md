@@ -1,5 +1,44 @@
 Cloud-Resolving Storm Simulator (CReSS) project
 
+# Branch to support additional output variables for heating rate
+The CReSS code in this branch is based on `version3.5.1m`.
+Additional output variables for heating rate in the equation of potential temperature. 
+You can obtain the heating rates in dmp files by specifying `dmpvar(15:16)` in `user.conf`. 
+The meaning of signs to be specified in the dmpvar is described in `Form/ADOPT3.5.1/user.conf.DELL`:
+```  dmpvar = '--ooo-ooxoxxooxxo'
+                       ! character(len=108,kind=[1byte])
+                       ! Control flag of dumped variables. Each character is
+                       ! corresponding to 
+                       ! dmpvar(1:6): u, v, w, p, pt, qv,
+                       ! dmpvar(7): mixing ratio of water and ice substance, 
+                       ! dmpvar(8): concentrations of water and ice substance,
+                       ! dmpvar(9): charging distributions,
+                       ! dmpvar(10): aerosol mixing ratio,
+                       ! dmpvar(11): tracer mixing ratio,
+                       ! dmpvar(12): tke,
+                       ! dmpvar(13): surface monitor variables,
+                       ! dmpvar(14): surface precipitation, heating rate by
+                       ! dmpvar(15): heating rate by cloud microphysics, 
+                       ! dmpvar(16): heating rate by turbulence and numerical diffusion,
+                       ! dmpvar(17): z physical coordinates in order.
+                       ! We can set only 17 characters.
+                       !   o: Dump specified variable
+                       !   +: Dump specified variable, and dump maximum
+                       !      instantaneous wind velocity depending on tke.
+                       !      So only used for tke which is corresponding to
+                       !      dmpvar(12:12).
+                       !      Numerical diffusion heating dmpvar(16:16). 
+                       !   -: Dump specified variable, but not dump base state
+                       !      for u, v and qv and not separate base state and
+                       !      its perturbation for p and pt and dump maximum
+                       !      instantaneous wind velocity instead of tke. So
+                       !      only used for u, v, p, pt, qv and tke which are
+                       !      corresponing to dmpvar(1:2), dmpvar(4:6) and
+                       !      dmpvar(12:12).
+                       !   x: Not dump specified variable
+```
+
+
 # What is CReSS?
 Cloud-Resolving Storm Simulator (CReSS) is a nonhydrostatic and regional atmosphere model for numerical simulations of tropical cyclones, thunderstorms, tornados, and other severe weather phenomena. 
 

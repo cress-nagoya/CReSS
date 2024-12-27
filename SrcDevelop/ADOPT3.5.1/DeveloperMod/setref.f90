@@ -1774,7 +1774,7 @@
       ncpt(155)=38
 
       write(capt(155)(1:60),'(a60)')                                    &
-     &    'heating for turbulence [(kg K)/(s m3)]                      '
+     &    'heating for turbulence [K/s]                                '
 
       ncpt(156)=37
 
@@ -1834,7 +1834,7 @@
       ncpt(167)=60
 
       write(capt(167)(1:60),'(a60)')                                    &
-     &    'numerical diffusion of potential temperature [(kg K)/(m3 s)]'
+     &    'numerical diffusion of potential temperature [K/s]          '
 
       ncpt(168)=59
 
