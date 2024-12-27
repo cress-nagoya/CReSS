@@ -1045,7 +1045,7 @@ trndrv.o         : m_chkerr.mod m_chkmxn.mod m_chkstd.mod m_comindx.mod\
 turbdrv.o        : m_bruntv.mod m_comindx.mod m_defomten.mod m_defomssq.mod\
                    m_eddyvis.mod m_strsten.mod m_turbuvw.mod
 turbflx.o        : m_bc8w.mod m_comindx.mod m_getiname.mod m_getrname.mod
-turbs.o          : m_getcname.mod m_getiname.mod m_getrname.mod m_comtub.mod
+turbs.o          : m_getiname.mod m_getrname.mod
 turbtke.o        : m_getiname.mod m_getrname.mod
 turbuvw.o        : m_getiname.mod m_getrname.mod
 undefice.o       : m_commath.mod m_destroy.mod

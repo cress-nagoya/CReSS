@@ -303,6 +303,7 @@
 
       real :: dmpitv
       real :: dtb
+      integer :: advopt
 
 !-----7--------------------------------------------------------------7--
 
@@ -331,6 +332,12 @@
 
         call getrname(iddtbig,dtb)
         call getrname(iddmpitv,dmpitv)
+        call getiname(idadvopt,advopt)
+
+        if(advopt.le.3)then  ! For Leap-Frog
+           dtb=2.0*dtb
+           dmpitv=2.0*dmpitv
+        end if
 
 ! -----
 

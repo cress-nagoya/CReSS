@@ -2,7 +2,7 @@ module m_dmptub
 
 contains
 
-subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
+subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt, fact3d )
 
   use m_comtub
 
@@ -14,12 +14,28 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
   real, intent(inout) :: val(0:ni+1,0:nj+1,1:nk)
   character(6), intent(in) :: cf
   character(1), intent(in) :: sf
+  real, intent(in), optional :: fact3d(0:ni+1,0:nj+1,1:nk)
   real, intent(in) :: dt
 
   integer :: i, j, k
   real :: dti
+  real :: fact3d_in(0:ni+1,0:nj+1,1:nk)
 
   dti=1.0e0/dt
+  fact3d_in(0:ni+1,0:nj+1,1:nk)=1.0
+
+  if(present(fact3d))then
+     do k=1,nk-1
+     do j=1,nj-1
+     do i=1,ni-1
+       if(fact3d(i,j,k)/=0.0)then
+         fact3d_in(i,j,k)=1.0/fact3d(i,j,k)
+       else
+       end if
+     end do
+     end do
+     end do
+  end if
 
 !$omp parallel default(shared)
 
@@ -32,7 +48,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         numdu(i,j,k)=val(i,j,k)*dti
+         numdu(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -47,7 +63,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdu(i,j,k)=val(i,j,k)-numdu(i,j,k)
-         numdu(i,j,k)=numdu(i,j,k)*dti
+         numdu(i,j,k)=numdu(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -62,7 +78,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdu(i,j,k)=val(i,j,k)+numdu(i,j,k)
-         numdu(i,j,k)=numdu(i,j,k)*dti
+         numdu(i,j,k)=numdu(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -94,7 +110,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         numdv(i,j,k)=val(i,j,k)*dti
+         numdv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -109,7 +125,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdv(i,j,k)=val(i,j,k)-numdv(i,j,k)
-         numdv(i,j,k)=numdv(i,j,k)*dti
+         numdv(i,j,k)=numdv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -124,7 +140,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdv(i,j,k)=val(i,j,k)+numdv(i,j,k)
-         numdv(i,j,k)=numdv(i,j,k)*dti
+         numdv(i,j,k)=numdv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -156,7 +172,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         numdw(i,j,k)=val(i,j,k)*dti
+         numdw(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -171,7 +187,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdw(i,j,k)=val(i,j,k)-numdw(i,j,k)
-         numdw(i,j,k)=numdw(i,j,k)*dti
+         numdw(i,j,k)=numdw(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -186,7 +202,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdw(i,j,k)=val(i,j,k)+numdw(i,j,k)
-         numdw(i,j,k)=numdw(i,j,k)*dti
+         numdw(i,j,k)=numdw(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -218,7 +234,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         numdpt(i,j,k)=val(i,j,k)*dti
+         numdpt(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -233,7 +249,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdpt(i,j,k)=val(i,j,k)-numdpt(i,j,k)
-         numdpt(i,j,k)=numdpt(i,j,k)*dti
+         numdpt(i,j,k)=numdpt(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -248,7 +264,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdpt(i,j,k)=val(i,j,k)+numdpt(i,j,k)
-         numdpt(i,j,k)=numdpt(i,j,k)*dti
+         numdpt(i,j,k)=numdpt(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -280,7 +296,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         numdqv(i,j,k)=val(i,j,k)*dti
+         numdqv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -295,7 +311,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdqv(i,j,k)=val(i,j,k)-numdqv(i,j,k)
-         numdqv(i,j,k)=numdqv(i,j,k)*dti
+         numdqv(i,j,k)=numdqv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -310,7 +326,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          numdqv(i,j,k)=val(i,j,k)+numdqv(i,j,k)
-         numdqv(i,j,k)=numdqv(i,j,k)*dti
+         numdqv(i,j,k)=numdqv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -342,7 +358,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         turbu(i,j,k)=val(i,j,k)*dti
+         turbu(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -357,7 +373,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbu(i,j,k)=val(i,j,k)-turbu(i,j,k)
-         turbu(i,j,k)=turbu(i,j,k)*dti
+         turbu(i,j,k)=turbu(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -372,7 +388,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbu(i,j,k)=val(i,j,k)+turbu(i,j,k)
-         turbu(i,j,k)=turbu(i,j,k)*dti
+         turbu(i,j,k)=turbu(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -404,7 +420,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         turbv(i,j,k)=val(i,j,k)*dti
+         turbv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -419,7 +435,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbv(i,j,k)=val(i,j,k)-turbv(i,j,k)
-         turbv(i,j,k)=turbv(i,j,k)*dti
+         turbv(i,j,k)=turbv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -434,7 +450,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbv(i,j,k)=val(i,j,k)+turbv(i,j,k)
-         turbv(i,j,k)=turbv(i,j,k)*dti
+         turbv(i,j,k)=turbv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -466,7 +482,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         turbpt(i,j,k)=val(i,j,k)*dti
+         turbpt(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -481,7 +497,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbpt(i,j,k)=val(i,j,k)-turbpt(i,j,k)
-         turbpt(i,j,k)=turbpt(i,j,k)*dti
+         turbpt(i,j,k)=turbpt(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -496,7 +512,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbpt(i,j,k)=val(i,j,k)+turbpt(i,j,k)
-         turbpt(i,j,k)=turbpt(i,j,k)*dti
+         turbpt(i,j,k)=turbpt(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -528,7 +544,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do k=1,nk-1
        do j=1,nj-1
        do i=1,ni-1
-         turbqv(i,j,k)=val(i,j,k)*dti
+         turbqv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -543,7 +559,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbqv(i,j,k)=val(i,j,k)-turbqv(i,j,k)
-         turbqv(i,j,k)=turbqv(i,j,k)*dti
+         turbqv(i,j,k)=turbqv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -558,7 +574,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
        do j=1,nj-1
        do i=1,ni-1
          turbqv(i,j,k)=val(i,j,k)+turbqv(i,j,k)
-         turbqv(i,j,k)=turbqv(i,j,k)*dti
+         turbqv(i,j,k)=turbqv(i,j,k)*dti*fact3d_in(i,j,k)
        end do
        end do
        end do
@@ -588,7 +604,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
      do k=1,nk-1
      do j=1,nj-1
      do i=1,ni-1
-       vish(i,j,k)=val(i,j,k)*dti
+       vish(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
      end do
      end do
      end do
@@ -602,7 +618,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
      do k=1,nk-1
      do j=1,nj-1
      do i=1,ni-1
-       visv(i,j,k)=val(i,j,k)*dti
+       visv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
      end do
      end do
      end do
@@ -616,7 +632,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
      do k=1,nk-1
      do j=1,nj-1
      do i=1,ni-1
-       difh(i,j,k)=val(i,j,k)*dti
+       difh(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
      end do
      end do
      end do
@@ -630,7 +646,7 @@ subroutine s_dmptub( ni, nj, nk, val, cf, sf, dt )
      do k=1,nk-1
      do j=1,nj-1
      do i=1,ni-1
-       difv(i,j,k)=val(i,j,k)*dti
+       difv(i,j,k)=val(i,j,k)*dti*fact3d_in(i,j,k)
      end do
      end do
      end do

@@ -399,7 +399,8 @@
 
       if(dmpvar(16:16).eq.'+')then
 
-        call s_dmptub( ni, nj, nk, ptfrc, 'numdpt', 'm', 1.0e0 )
+        call s_dmptub( ni, nj, nk, ptfrc, 'numdpt', 'm', 1.0e0,         &
+     &                 fact3d=rst(0:ni+1,0:nj+1,1:nk) )
 
       end if
 
@@ -409,13 +410,26 @@
 
       if(tubopt.ge.1) then
 
+        if(dmpvar(16:16).eq.'o'.or.dmpvar(16:16).eq.'+')then
+
+          call s_dmptub( ni, nj, nk, ptfrc, 'turbpt', 'o', 1.0e0 )
+
+        end if
+
         call turbflx(idtrnopt,idsfcopt,iddxiv,iddyiv,iddziv,ni,nj,nk,   &
      &               j31,j32,jcb,pt,ptfrc,rkh8u,rkh8v,rkv8w,            &
      &               tmp1,tmp2,h3,tmp3,tmp4,tmp5)
 
         call turbs(idtrnopt,idmpopt,idmfcopt,iddxiv,iddyiv,iddziv,      &
-     &             iddmpvar,ni,nj,nk,'pt',j31,j32,jcb8u,jcb8v,mf,rmf,   &
-     &             rmf8u,rmf8v,tmp1,tmp2,h3,ptfrc,tmp3,tmp4,tmp5)
+     &             ni,nj,nk,j31,j32,jcb8u,jcb8v,mf,rmf,rmf8u,rmf8v,     &
+     &             tmp1,tmp2,h3,ptfrc,tmp3,tmp4,tmp5)
+
+        if(dmpvar(16:16).eq.'o'.or.dmpvar(16:16).eq.'+')then
+
+          call s_dmptub( ni, nj, nk, ptfrc, 'turbpt', 'm', 1.0e0,         &
+     &                   fact3d=rst(0:ni+1,0:nj+1,1:nk) )
+
+        end if
 
       end if
 
