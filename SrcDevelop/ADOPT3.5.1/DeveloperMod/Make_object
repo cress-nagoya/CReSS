@@ -296,9 +296,9 @@ forcep.o         : m_advp.mod m_comindx.mod m_getcname.mod m_getiname.mod\
                    m_inichar.mod m_lspp.mod m_p2gpv.mod m_smoo2p.mod\
                    m_smoo4p.mod m_vspp.mod
 forcept.o        : m_advbspt.mod m_advs.mod m_comindx.mod m_comkind.mod\
-                   m_comtub.mod m_getcname.mod m_getiname.mod m_inichar.mod\
-                   m_lsps.mod m_nlsms.mod m_s2gpv.mod m_smoo2s.mod\
-                   m_smoo4s.mod m_turbflx.mod m_turbs.mod m_vsps.mod
+                   m_comtub.mod m_dmptub.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lsps.mod m_nlsms.mod m_s2gpv.mod\
+                   m_smoo2s.mod m_smoo4s.mod m_turbflx.mod m_turbs.mod m_vsps.mod
 forceq.o         : m_advs.mod m_comindx.mod m_getcname.mod m_getiname.mod\
                    m_inichar.mod m_lsps.mod m_lsps0.mod m_nlsms.mod\
                    m_qp2rdr.mod m_s2gpv.mod m_smoo2s.mod m_smoo4s.mod\
