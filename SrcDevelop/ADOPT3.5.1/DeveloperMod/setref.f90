@@ -12,7 +12,7 @@
 !                   2011/06/01, 2011/08/18, 2011/09/22, 2011/11/10
 
 !     Author      : Satoki Tsujino
-!     Modification: 2024/12/25 
+!     Modification: 2024/12/25, 2024/12/31
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -1771,7 +1771,7 @@
       write(capt(154)(1:60),'(a60)')                                    &
      &    'y component of frictional force for turbulence [N]          '
 
-      ncpt(155)=38
+      ncpt(155)=28
 
       write(capt(155)(1:60),'(a60)')                                    &
      &    'heating for turbulence [K/s]                                '
@@ -1831,7 +1831,7 @@
       write(capt(166)(1:60),'(a60)')                                    &
      &    'numerical diffusion of pressure [(kg Pa)/(m3 s)]            '
 
-      ncpt(167)=60
+      ncpt(167)=50
 
       write(capt(167)(1:60),'(a60)')                                    &
      &    'numerical diffusion of potential temperature [K/s]          '
