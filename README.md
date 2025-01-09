@@ -1,9 +1,10 @@
-Cloud-Resolving Storm Simulator (CReSS) project
-
 # Branch to support additional output variables for heating rate
 The CReSS code in this branch is based on `version3.5.1m`.
 Additional output variables for heating rate in the equation of potential temperature are supported. 
 These additional output variables were used in [Tsujino and Tsuboki (2020)](https://doi.org/10.1175/JAS-D-19-0119.1) and [Tsujino et al. (2021)](https://doi.org/10.1175/JAS-D-20-0049.1). 
+
+**[Request]** 
+If you have any results obtained by the CReSS code in this branch, please cite [references](#References), [Tsujino and Tsuboki (2020)](https://doi.org/10.1175/JAS-D-19-0119.1), and [Tsujino et al. (2021)](https://doi.org/10.1175/JAS-D-20-0049.1).
 
 You can obtain the heating rates in dmp files by specifying `dmpvar(15:16)` in `user.conf`. 
 The meaning of signs to be specified in the dmpvar is described in `Form/ADOPT3.5.1/user.conf.DELL`:
