@@ -4,7 +4,7 @@ Additional output variables for heating rate in the equation of potential temper
 These additional output variables were used in [Tsujino and Tsuboki (2020)](https://doi.org/10.1175/JAS-D-19-0119.1) and [Tsujino et al. (2021)](https://doi.org/10.1175/JAS-D-20-0049.1). 
 
 **[Request]** 
-If you have any results obtained by the CReSS code in this branch, please cite [references](#References), [Tsujino and Tsuboki (2020)](https://doi.org/10.1175/JAS-D-19-0119.1), and [Tsujino et al. (2021)](https://doi.org/10.1175/JAS-D-20-0049.1).
+If you have any results obtained by the CReSS code in this branch, please cite [References](#References).
 
 You can obtain the heating rates in dmp files by specifying `dmpvar(15:16)` in `user.conf`. 
 The meaning of signs to be specified in the dmpvar is described in `Form/ADOPT3.5.1/user.conf.DELL`:
@@ -66,3 +66,5 @@ You can find examples of the configuration and setting file for the CReSS model 
 2. Tsuboki, K., 2008: High-Resolution Simulations of High-Impact Weather Systems Using the Cloud-Resolving Model on the Earth Simulator. Hamilton, Kevin; Ohfuchi, Wataru (Eds.), _High Resolution Numerical Modelling of the Atmosphere and Ocean_, Springer New York, 141-156.
 3. Tsuboki, K. and A. Sakakibara, 2007: Numerical prediction of high-impact weather systems. _The Textbook for Seventeenth IHP Training Course in 2007_, 281pp.
 4. Tsuboki, K. and A. Sakakibara, 2002: Large scale parallel computing of Cloud Resolving Storm Simulator. H. P. Zima et al. (Eds), _High Performance Computing_, Springer, 243-259.
+5. Tsujino, S. and K. Tsuboki, 2020: Intensity change of Typhoon Nancy (1961) during landfall in a moist environment over Japan: A numerical simulation with spectral nudging. _J. Atmos. Sci._, **77**, 1429–1454, https://doi.org/10.1175/JAS-D-19-0119.1.
+6. Tsujino, S., K. Tsuboki, H. Yamada, T. Ohigashi, K. Ito, and N. Nagahama, 2021: Intensification and maintenance of a double warm-core structure in Typhoon Lan (2017) simulated by a cloud-resolving model. _J. Atmos. Sci._, **78**, 595–617, https://doi.org/10.1175/JAS-D-20-0049.1. 
