@@ -1,0 +1,55 @@
+################################################################################
+#                                                                              #
+#     User configuration file, compile.conf                                    #
+#                                                                              #
+#     You can set the compile options.                                         #
+#                                                                              #
+#     Author      : SAKAKIBARA Atsushi                                         #
+#     Date        : 1999/01/20                                                 #
+#     Modification: 1999/01/25, 1999/11/19, 2002/06/17, 2025/03/06             #
+#     for ES2     : 2009/05/15, YOSHIOKA Mayumi                                #
+#                                                                              #
+# ---------------------------------------------------------------------------- #
+#                                                                              #
+#     < Notice >                                                               #
+#                                                                              #
+#     RRTM library archive file in compiling of solver, to skip re-build       #
+#     RRTM object/module files, which take too much long time.                 #
+#                                                                              #
+#     < How to compile >                                                       #
+#                                                                              #
+#     $ ./compile_radlib.csh solver compile.conf (compile solver.exe)          #
+#                                                                              #
+#       or                                                                     #
+#                                                                              #
+#     $ ./compile_radlib.csh solver compile.conf                               #
+#                       (compile rad-scheme first and solver.exe secondly)     #
+#                                                                              #
+#     < How to remove *.exe, *.o, *.mod, rad-scheme_library(lib*.a) >          #
+#                                                                              #
+#     $ ./compile_radlib.csh clean                                             #
+#                                                                              #
+#     < How to remove *.exe, *.o, *.mod >                                      #
+#                                                                              #
+#     $ ./compile_radlib.csh crscln                                            #
+#                                                                              #
+################################################################################
+
+LDFLAGS = -Kparallel
+
+FFLAGS  = -Kfast,parallel,ocl,simd_nopacked_promotion -Nlst=t
+# FFLAGS  = -Kfast,parallel,ocl -Nlst=t  # When not using optimized unite
+
+#------------------------------------------------------------------------------#
+#                                                                              #
+# In the following section,                                                    #
+#     if your machine's fortran compiler command is neither mpif90 nor f90,    #
+#     you have to set the following macro to adjust.                           #
+#                                                                              #
+#------------------------------------------------------------------------------#
+
+FC      = mpifrtpx  # Compile on login node
+
+CC      = fccpx     # Compile on login node
+
+
