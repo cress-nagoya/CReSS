@@ -18,7 +18,7 @@
 !                   2007/07/30, 2007/09/04, 2008/05/02, 2008/07/01,
 !                   2008/08/19, 2008/08/25, 2008/10/10, 2008/12/11,
 !                   2009/02/27, 2009/03/31, 2011/09/22, 2013/02/13,
-!                   2013/03/27
+!                   2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -814,7 +814,8 @@
 ! Read in the data to the interpolated GPV file.
 
          call outgpv(idexprim,idcrsdir,idgpvvar,idncexp,idnccrs,        &
-     &               idwlngth,it,nstp0,ctime,ni,nj,nk,ubr,vbr,          &
+     &               idwlngth,idsubdir_proc,                            &
+     &               it,nstp0,ctime,ni,nj,nk,ubr,vbr,                   &
      &               pbr,ptbr,qvbr,u,v,w,pp,ptp,qv,qc,qr,qi,qs,qg,qh)
 
 ! -----

@@ -11,7 +11,7 @@
 !                   2005/04/04, 2006/01/10, 2006/09/21, 2006/11/06,
 !                   2007/01/20, 2007/08/24, 2008/05/02, 2008/07/01,
 !                   2008/08/19, 2008/08/25, 2008/10/10, 2009/02/27,
-!                   2011/11/10, 2013/02/13, 2013/03/27
+!                   2011/11/10, 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -648,7 +648,8 @@
 ! Read in the data to the interpolated surface file.
 
           call outsfc(idexprim,idcrsdir,idsfcdat,idncexp,idnccrs,       &
-     &                idwlngth,ni,nj,land,albe,beta,z0m,z0h,cap,nuu,kai)
+     &                idwlngth,idsubdir_proc,                           &
+     &                ni,nj,land,albe,beta,z0m,z0h,cap,nuu,kai)
 
 ! -----
 
@@ -779,7 +780,7 @@
 ! Read in the data to the interpolated sea surface temperature file.
 
             call outsst(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,     &
-     &                  it,nstp0,ctime,ni,nj,sst)
+     &                  idsubdir_proc,it,nstp0,ctime,ni,nj,sst)
 
 ! -----
 

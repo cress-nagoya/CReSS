@@ -26,7 +26,8 @@
 !                   2008/01/11, 2008/04/17, 2008/05/02, 2008/07/01,
 !                   2008/08/25, 2008/10/10, 2008/12/11, 2009/01/05,
 !                   2009/01/30, 2009/02/27, 2011/05/16, 2011/08/09,
-!                   2011/08/18, 2011/09/22, 2011/11/10, 2013/03/27
+!                   2011/08/18, 2011/09/22, 2011/11/10, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -380,6 +381,9 @@
 
       integer rmopt_rst
                        ! Option for original restart files removing
+
+      integer subdir_proc
+                       ! Number of processes per sub-directory
 
       real tlat1       ! True latitude
       real tlat2       ! True latitude
@@ -801,7 +805,7 @@
 
       namelist /runame/ exprim
 
-      namelist /drname/ crsdir,datdir
+      namelist /drname/ crsdir,datdir,subdir_proc
 
       namelist /dimset/ numpe,xgroup,ygroup,xsub,ysub,xdim,ydim,zdim
 

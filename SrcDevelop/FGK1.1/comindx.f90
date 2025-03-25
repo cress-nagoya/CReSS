@@ -20,7 +20,7 @@
 !                   2008/05/02, 2008/07/01, 2008/08/25, 2008/10/10,
 !                   2008/12/11, 2009/01/05, 2009/01/30, 2009/02/27,
 !                   2011/05/16, 2011/08/09, 2011/08/18, 2011/09/22,
-!                   2011/11/10
+!                   2011/11/10, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -1059,6 +1059,9 @@
 
       integer, parameter :: idrmopt_rst=219
                        ! Unique index of rmopt_rst in namelist table
+
+      integer, parameter :: idsubdir_proc=220
+                       ! Unique index of subdir_proc in namelist table
 
       integer, parameter :: idiwest=39
                        ! Unique index of iwest in namelist table

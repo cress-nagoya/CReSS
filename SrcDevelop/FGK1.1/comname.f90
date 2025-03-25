@@ -20,7 +20,7 @@
 !                   2008/05/02, 2008/07/01, 2008/08/25, 2008/10/10,
 !                   2009/01/05, 2009/01/30, 2009/02/27, 2011/05/16,
 !                   2011/08/09, 2011/08/18, 2011/09/22, 2011/11/10,
-!                   2013/03/27
+!                   2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -54,7 +54,7 @@
       integer, parameter :: ncn=21
                        ! Dimension of character namelist table
 
-      integer, parameter :: nin=219
+      integer, parameter :: nin=220
                        ! Dimension of integer namelist table
 
       integer, parameter :: nrn=798
