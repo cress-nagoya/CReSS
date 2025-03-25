@@ -14,7 +14,7 @@
 !                   2006/09/30, 2006/12/04, 2007/01/05, 2007/01/20,
 !                   2007/04/11, 2007/05/14, 2007/05/21, 2007/07/30,
 !                   2007/08/24, 2008/05/02, 2008/08/25, 2008/10/10,
-!                   2009/02/27, 2013/02/13, 2013/03/27
+!                   2009/02/27, 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -32,6 +32,7 @@
       use m_destroy
       use m_getcname
       use m_getiname
+      use m_getrname
       use m_getunit
       use m_inichar
       use m_outstd03
@@ -83,7 +84,8 @@
 
 !***********************************************************************
       subroutine s_unidmpgr(fpexprim,fpcrsdir,fpncexp,fpnccrs,          &
-     &                      fpwlngth,fprmopt_uni,ctime,nx,ny,           &
+     &                      fpwlngth,fprmopt_uni,fpbufsz_uni,           &
+     &                      fpsubdir_proc,ctime,nx,ny,                  &
      &                      ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 !***********************************************************************
 
@@ -106,6 +108,12 @@
 
       integer, intent(in) :: fprmopt_uni
                        ! Formal parameter of unique index of rmopt_uni
+
+      integer, intent(in) :: fpbufsz_uni
+                       ! Formal parameter of unique index of fpbufsz_uni
+
+      integer, intent(in) :: fpsubdir_proc
+                       ! Formal parameter of unique index of subdir_proc
 
       integer(kind=i8), intent(in) :: ctime
                        ! Model current forecast time
@@ -145,6 +153,9 @@
       character(len=108) dmpfl
                        ! Name of dumped file
 
+      character(len=10) c_subdir
+                       ! Subdirectory name (character)
+
       integer ncexp    ! Number of character of exprim
       integer nccrs    ! Number of character of crsdir
 
@@ -183,12 +194,32 @@
 
       integer iouni    ! Unit number of united file
 
+      integer filesize       ! Total geo/dmp/mon file size
+      integer num_layer      ! Number of z*var layers
+      integer max_chunk      ! Number of layers that can ve written at once
+      integer num_write      ! Number of write operations
+      integer remainder      ! Number of layers in final write
+      integer write_counter  ! Counter for writing unite file
+      integer chunk          ! Number of layers to wirte
+      integer k              ! Array index in z and var directions
+
+      integer i_subdir ! Subdirectory name (integer)
+
+      integer n_proc   ! Number of processes per subdirectory
+
       integer, intent(inout) :: iodmp(0:nio_uni)
                        ! Unit number of dumped file
+
+      real bufsz_uni   ! Buffer size
 
       real, intent(inout) :: var(2:ni_uni-2,2:nj_uni-2)
                        ! Optional variable in dumped file
 
+      real, allocatable :: read_var(:,:,:,:)
+                       ! Optional variable in dumped file
+
+      real, allocatable :: write_var(:,:,:)
+                       ! Optional variable in united file
 !-----7--------------------------------------------------------------7--
 
 ! Initialize character variables.
@@ -206,16 +237,13 @@
       call getiname(fpnccrs,nccrs)
       call getiname(fpwlngth,wlngth)
       call getiname(fprmopt_uni,rmopt_uni)
+      call getrname(fpbufsz_uni,bufsz_uni)
+      call getiname(fpsubdir_proc,n_proc)
 
 ! -----
 
-! Set the common used variable.
 
-      njrec=nsub*(nj-3)
-
-! -----
-
-!!!! Generate the united file from the dumped files.
+!!!! Generate the united file from the dumped files for monitor variables.
 
 ! Initialize the character variable.
 
@@ -226,6 +254,353 @@
 ! Get the unit number.
 
       call getunit(iouni)
+
+! -----
+
+!! Determine unite scheme.
+
+! Tuned scheme.
+
+      if(bufsz_uni/=0) then
+
+            go to 10
+
+! -----
+
+! Original scheme.
+
+      else
+
+            go to 90
+
+! -----
+
+      end if
+
+!! -----
+
+!!!! Generate the united file from the dumped files by tuned scheme.
+
+! Open the united file.
+
+  10  unifl(1:ncexp)=exprim(1:ncexp)
+
+      if(ngrp.eq.1) then
+
+        ncuni=ncexp+22
+
+        write(unifl(ncexp+1:ncexp+22),'(a3,i8.8,a11)')                  &
+     &            'dmp',ctime/1000_i8,'.united.bin'
+
+      else
+
+        ncuni=ncexp+35
+
+        write(unifl(ncexp+1:ncexp+35),'(a3,i8.8,a4,i9.9,a11)')          &
+     &            'dmp',ctime/1000_i8,'.grp',mygrp,'.united.bin'
+
+      end if
+
+      open(iouni,iostat=stat,err=20,                                    &
+     &     file=crsdir(1:nccrs)//unifl(1:ncuni),                        &
+     &     status='new',access='stream',form='unformatted',             &
+     &     action='write')
+
+  20  if(stat.ne.0) then
+
+        call destroy('unidmpgr',8,'stop',1,'              ',14,iouni,   &
+     &               stat)
+
+      end if
+
+! -----
+
+!! Get number of data size.
+
+      print *, "[INFO] Start getting file size."
+
+! Set first dump file name.
+
+      dmpfl(1:ncexp)=exprim(1:ncexp)
+
+      mysub=0
+
+      if(ngrp.eq.1) then
+
+        ncdmp=ncexp+27
+
+        write(dmpfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')           &
+     &            'dmp',ctime/1000_i8,'.pe',mysub,'.bin'
+
+      else
+
+        ncdmp=ncexp+36
+
+        write(dmpfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')        &
+     &            'dmp',ctime/1000_i8,'.grp',mygrp,'-sub',mysub,'.bin'
+
+      end if
+
+! -----
+
+! Inquire file and calculate variables
+
+      if((nsub.gt.n_proc).and.(n_proc/=0)) then
+
+        inquire(file=crsdir(1:nccrs)//"0/"//dmpfl(1:ncdmp),size=filesize)
+
+      else
+
+        inquire(file=crsdir(1:nccrs)//dmpfl(1:ncdmp),size=filesize)
+
+      end if
+
+      num_layer=filesize/((ni-3)*(nj-3)*wlngth)
+      max_chunk=bufsz_uni/((ni-3)*(nj-3)*wlngth*nsub)
+
+      if(num_layer.lt.max_chunk) then
+
+        max_chunk=num_layer
+
+      end if
+
+      num_write=num_layer/max_chunk
+      remainder=mod(num_layer,max_chunk)
+
+      if(remainder/=0) then
+
+        num_write=num_write+1
+
+      end if
+
+      sizdmp=(ni-3)*(nj-3)*wlngth*max_chunk
+
+! -----
+
+! Allocate buffer.
+
+      allocate(read_var(nsub,2:ni-2,2:nj-2,max_chunk))
+      allocate(write_var(2:nx-2,2:ny-2,max_chunk))
+
+! -----
+
+!! -----
+
+!!! Start write loop.
+
+      write_loop: do write_counter=1,num_write
+
+        print *, "[INFO] Start write loop: ",write_counter," / ",num_write
+
+!! Start read loop.
+
+        read_loop: do mysub=0,nsub-1
+            print *, "[INFO] Read ",mysub+1," / ",nsub
+
+! Get the unit number.
+
+          call getunit(iodmp(0))
+
+! -----
+
+! Define file name.
+
+          dmpfl(1:ncexp)=exprim(1:ncexp)
+
+          if(ngrp.eq.1) then
+
+            ncdmp=ncexp+27
+
+            write(dmpfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')       &
+     &                'dmp',ctime/1000_i8,'.pe',mysub,'.bin'
+
+          else
+
+            ncdmp=ncexp+36
+
+            write(dmpfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')    &
+     &                'dmp',ctime/1000_i8,'.grp',mygrp,'-sub',mysub,'.bin'
+
+          end if
+
+! -----
+
+! Open file.
+
+          if((nsub.gt.n_proc).and.(n_proc/=0)) then
+
+            i_subdir=mysub/n_proc
+            i_subdir=i_subdir*n_proc
+            write(c_subdir,'(I10)') i_subdir
+            c_subdir=trim(adjustl(c_subdir))//"/"
+
+            if(rmopt_uni.eq.1) then
+              open(iodmp(0),iostat=stat,err=30,                         &
+    &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp), &
+    &             status='old',access='direct',form='unformatted',      &
+    &             recl=sizdmp,action='readwrite')
+            else
+              open(iodmp(0),iostat=stat,err=30,                         &
+    &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp), &
+    &             status='old',access='direct',form='unformatted',      &
+    &             recl=sizdmp,action='read')
+            end if
+
+          else
+
+            if(rmopt_uni.eq.1) then
+              open(iodmp(0),iostat=stat,err=30,                         &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &             status='old',access='direct',form='unformatted',     &
+     &             recl=sizdmp,action='readwrite')
+            else
+              open(iodmp(0),iostat=stat,err=30,                         &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &             status='old',access='direct',form='unformatted',     &
+     &             recl=sizdmp,action='read')
+            end if
+
+          end if
+
+  30      if(stat.ne.0) then
+
+            call destroy('unidmpgr',8,'cont',1,'              ',14,     &
+     &                   iodmp(0),stat)
+
+            go to 220
+
+          end if
+
+! -----
+
+! Read in dump file.
+
+          read(iodmp(0),rec=write_counter,iostat=stat,err=40)           &
+     &             read_var(mysub+1,2:ni-2,2:nj-2,1:max_chunk)
+
+  40      if(recdmp.eq.1) then
+
+            call destroy('unidmpgr',8,'cont',3,'              ',14,     &
+    &                     iodmp(0),stat)
+
+            go to 220
+
+          else
+
+            call outstd03('unidmpgr',8,dmpfl,108,iodmp(0),3,1,ctime)
+
+          end if
+
+! -----
+
+! Close the dumped file.
+
+          if(rmopt_uni.eq.1) then
+
+            close(iodmp(0),iostat=stat,err=50,status='delete')
+
+          else
+
+            close(iodmp(0),iostat=stat,err=50,status='keep')
+
+          end if
+
+  50      if(stat.ne.0) then
+
+            call destroy('unidmpgr',8,'cont',2,'              ',14,     &
+     &                     iodmp(0),stat)
+
+            go to 220
+
+          end if
+
+! -----
+
+! Return the unit number.
+
+          call putunit(iodmp(0))
+
+! -----
+
+        end do read_loop
+
+!! -----
+
+! Organize data.
+
+        print *, "[INFO] Start organizing data: ",write_counter," / ",num_write
+
+        if(write_counter*max_chunk.gt.num_layer) then
+
+          chunk=remainder
+
+        else
+
+          chunk=max_chunk
+
+        end if
+
+        do k=1,chunk
+
+          do mysub=0,nsub-1
+
+            call currpe('unite   ',5,'ijsub')
+
+            istr=isub*(ni-3)+2
+            iend=(isub+1)*(ni-3)+1
+
+            jstr=jsub*(nj-3)+2
+            jend=(jsub+1)*(nj-3)+1
+
+            write_var(istr:iend,jstr:jend,k)=read_var(mysub+1,2:ni-2,2:nj-2,k)
+
+          end do
+
+        end do
+
+! -----
+
+! Write data.
+
+        print *, "[INFO] Start write data: ",write_counter," / ",num_write
+
+        write(iouni,iostat=stat,err=210) write_var(2:nx-2,2:ny-2,1:chunk)
+
+! -----
+
+      end do write_loop
+
+!!! -----
+
+! Close the united file.
+
+      close(iouni,iostat=stat,err=60,status='keep')
+
+  60 if(stat.ne.0) then
+
+        call destroy('unidmpgr',8,'stop',2,'              ',14,iouni,   &
+     &               stat)
+
+      end if
+
+! -----
+
+! Return the unit number.
+
+      call putunit(iouni)
+
+! -----
+
+      return
+
+!!!! -----
+
+
+!!!! Generate the united file from the dumped files by original scheme.
+
+! Set the common used variable.
+
+  90  njrec=nsub*(nj-3)
 
 ! -----
 
@@ -327,19 +702,46 @@
 
             end if
 
-            if(rmopt_uni.eq.1) then
+            if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-              open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
-     &             status='old',access='direct',form='unformatted',     &
-     &             recl=sizdmp,action='readwrite')
+              i_subdir=mysub/n_proc
+              i_subdir=i_subdir*n_proc
+              write(c_subdir, '(I10)') i_subdir
+              c_subdir=trim(adjustl(c_subdir))//"/"
+
+              if(rmopt_uni.eq.1) then
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='readwrite')
+
+              else
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='read')
+
+              end if
 
             else
 
-              open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
-     &             status='old',access='direct',form='unformatted',     &
-     &             recl=sizdmp,action='read')
+              if(rmopt_uni.eq.1) then
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='readwrite')
+
+              else
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='read')
+
+              end if
 
             end if
 
@@ -478,19 +880,46 @@
 
               write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
 
-              if(rmopt_uni.eq.1) then
+              if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-               open(iodmp(isub),iostat=stat,err=140,                    &
-     &              file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
-     &              status='old',access='direct',form='unformatted',    &
-     &              recl=sizdmp,action='readwrite')
+                i_subdir=mysub/n_proc
+                i_subdir=i_subdir*n_proc
+                write(c_subdir, '(I10)') i_subdir
+                c_subdir=trim(adjustl(c_subdir))//"/"
+
+                if(rmopt_uni.eq.1) then
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='readwrite')
+
+                else
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='read')
+
+                end if
 
               else
 
-               open(iodmp(isub),iostat=stat,err=140,                    &
-     &              file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
-     &              status='old',access='direct',form='unformatted',    &
-     &              recl=sizdmp,action='read')
+                if(rmopt_uni.eq.1) then
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='readwrite')
+
+                else
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='read')
+
+                end if
 
               end if
 
@@ -644,19 +1073,46 @@
 
           write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
 
-          if(rmopt_uni.eq.1) then
+          if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-            open(iodmp(mysub),iostat=stat,err=170,                      &
-     &           file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
-     &           status='old',access='direct',form='unformatted',       &
-     &           recl=sizdmp,action='readwrite')
+            i_subdir=mysub/n_proc
+            i_subdir=i_subdir*n_proc
+            write(c_subdir, '(I10)') i_subdir
+            c_subdir=trim(adjustl(c_subdir))//"/"
+
+            if(rmopt_uni.eq.1) then
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='readwrite')
+
+            else
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='read')
+
+            end if
 
           else
 
-            open(iodmp(mysub),iostat=stat,err=170,                      &
-     &           file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
-     &           status='old',access='direct',form='unformatted',       &
-     &           recl=sizdmp,action='read')
+            if(rmopt_uni.eq.1) then
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='readwrite')
+
+            else
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='read')
+
+            end if
 
           end if
 
