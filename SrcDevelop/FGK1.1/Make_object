@@ -20,7 +20,7 @@
 #                   2010/05/17, 2010/09/22, 2011/01/14, 2011/03/18,            #
 #                   2011/03/29, 2011/05/16, 2011/06/01, 2011/08/18,            #
 #                   2011/09/22, 2011/11/10, 2011/12/17, 2013/02/11,            #
-#                   2013/02/13, 2013/10/08                                     #
+#                   2013/02/13, 2013/10/08, 2025/03/25                         #
 #                                                                              #
 ################################################################################
 
@@ -54,7 +54,7 @@ allocgpv.o       : m_chkerr.mod m_comgpv.mod m_commpi.mod m_cpondpe.mod\
 allocgrp.o       : m_chkerr.mod m_comgrp.mod m_commpi.mod m_cpondpe.mod\
                    m_destroy.mod m_getiname.mod
 allociot.o       : m_chkerr.mod m_comfile.mod m_comionum.mod m_commpi.mod\
-                   m_cpondpe.mod m_destroy.mod
+                   m_cpondpe.mod m_defmpi.mod m_destroy.mod
 allocmph.o       : m_chkerr.mod m_combin.mod m_comblk.mod m_commpi.mod\
                    m_cpondpe.mod m_destroy.mod m_getiname.mod m_setcst1d.mod\
                    m_setcst2d.mod m_setcst3d.mod m_temparam.mod
@@ -1080,6 +1080,10 @@ unimonrd.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
 unistep.o        : m_comkind.mod m_destroy.mod m_getcname.mod m_getrname.mod\
                    m_inichar.mod
 unite.o          : m_allocgrp.mod m_allociot.mod m_allocuni.mod m_chkkind.mod\
+                   m_comindx.mod m_comuni.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_setdim.mod m_setnluni.mod m_unidrv.mod
+unite_multi.o    : m_allocgrp.mod m_allociot.mod m_allocuni.mod m_chkkind.mod\
                    m_comindx.mod m_comuni.mod m_defdim.mod m_endmpi.mod\
                    m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
                    m_setdim.mod m_setnluni.mod m_unidrv.mod

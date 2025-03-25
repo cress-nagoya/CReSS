@@ -9,7 +9,8 @@
 !                   2004/09/25, 2005/01/31, 2005/02/10, 2006/09/21,
 !                   2006/12/04, 2007/01/05, 2007/01/20, 2007/01/31,
 !                   2007/05/14, 2007/10/19, 2008/05/02, 2008/08/25,
-!                   2008/10/10, 2009/01/05, 2009/02/27, 2013/01/28
+!                   2008/10/10, 2009/01/05, 2009/02/27, 2013/01/28,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -25,6 +26,7 @@
       use m_comionum
       use m_commpi
       use m_cpondpe
+      use m_defmpi
       use m_destroy
 
 !-----7--------------------------------------------------------------7--
@@ -90,6 +92,10 @@
 
       integer iio_sub  ! Substitute for iio
 
+      integer ierr     ! MPI error status
+
+      logical flag     ! Flag for parallel uniting
+
 !-----7--------------------------------------------------------------7--
 
 !! Get the maximum number of unit.
@@ -148,6 +154,14 @@
 
         stat=0
 
+      end if
+
+      ! Process for parallel uniting.
+      call mpi_initialized(flag, ierr)
+
+      if(flag) then
+        call mpi_bcast(nio, 1, mpi_integer, root, mpi_comm_cress, ierr)
+        call mpi_bcast(stat, 1, mpi_integer, root, mpi_comm_cress, ierr)
       end if
 
 ! -----
