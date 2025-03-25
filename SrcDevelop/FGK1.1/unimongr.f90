@@ -14,7 +14,8 @@
 !                   2006/09/30, 2006/12/04, 2007/01/05, 2007/01/20,
 !                   2007/04/11, 2007/05/14, 2007/05/21, 2007/07/30,
 !                   2007/08/24, 2008/04/17, 2008/05/02, 2008/08/25,
-!                   2008/10/10, 2009/02/27, 2013/02/13, 2013/03/27
+!                   2008/10/10, 2009/02/27, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -254,16 +255,16 @@
 
       if(ngrp.eq.1) then
 
-        ncuni=ncexp+22
+        ncuni=ncexp+27
 
         write(unifl(ncexp+1:ncexp+22),'(a3,i8.8,a11)')                  &
      &            'mon',ctime/1000_i8,'.united.bin'
 
       else
 
-        ncuni=ncexp+30
+        ncuni=ncexp+35
 
-        write(unifl(ncexp+1:ncexp+30),'(a3,i8.8,a4,i4.4,a11)')          &
+        write(unifl(ncexp+1:ncexp+35),'(a3,i8.8,a4,i9.9,a11)')          &
      &            'mon',ctime/1000_i8,'.grp',mygrp,'.united.bin'
 
       end if
@@ -314,16 +315,16 @@
 
             if(ngrp.eq.1) then
 
-              ncdmp=ncexp+22
+              ncdmp=ncexp+27
 
-              write(dmpfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i4.4,a4)')     &
+              write(dmpfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')     &
      &                  'mon',ctime/1000_i8,'.pe',mysub,'.bin'
 
             else
 
-              ncdmp=ncexp+31
+              ncdmp=ncexp+36
 
-              write(dmpfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i4.4),a4)')  &
+              write(dmpfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')  &
      &             'mon',ctime/1000_i8,'.grp',mygrp,'-sub',mysub,'.bin'
 
             end if
@@ -459,16 +460,16 @@
 
             if(ngrp.eq.1) then
 
-              ncdmp=ncexp+22
+              ncdmp=ncexp+27
 
               write(dmpfl(ncexp+1:ncexp+14),'(a3,i8.8,a3)')             &
      &                  'mon',ctime/1000_i8,'.pe'
 
             else
 
-              ncdmp=ncexp+31
+              ncdmp=ncexp+36
 
-              write(dmpfl(ncexp+1:ncexp+23),'(a3,i8.8,a4,i4.4,a4)')     &
+              write(dmpfl(ncexp+1:ncexp+28),'(a3,i8.8,a4,i9.9,a4)')     &
      &                  'mon',ctime/1000_i8,'.grp',mygrp,'-sub'
 
             end if
@@ -477,7 +478,7 @@
 
               call currpe('unite   ',5,'mysub')
 
-              write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
+              write(dmpfl(ncdmp-12:ncdmp),'(i9.9,a4)') mysub,'.bin'
 
               if(rmopt_uni.eq.1) then
 
@@ -627,23 +628,23 @@
 
         if(ngrp.eq.1) then
 
-          ncdmp=ncexp+22
+          ncdmp=ncexp+27
 
           write(dmpfl(ncexp+1:ncexp+14),'(a3,i8.8,a3)')                 &
      &              'mon',ctime/1000_i8,'.pe'
 
         else
 
-          ncdmp=ncexp+31
+          ncdmp=ncexp+36
 
-          write(dmpfl(ncexp+1:ncexp+23),'(a3,i8.8,a4,i4.4,a4)')         &
+          write(dmpfl(ncexp+1:ncexp+28),'(a3,i8.8,a4,i9.9,a4)')         &
      &              'mon',ctime/1000_i8,'.grp',mygrp,'-sub'
 
         end if
 
         do mysub=0,nsub-1
 
-          write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
+          write(dmpfl(ncdmp-12:ncdmp),'(i9.9,a4)') mysub,'.bin'
 
           if(rmopt_uni.eq.1) then
 

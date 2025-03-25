@@ -14,7 +14,7 @@
 !                   2006/09/30, 2006/12/04, 2007/01/05, 2007/01/20,
 !                   2007/04/11, 2007/05/14, 2007/05/21, 2007/08/24,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/02/27,
-!                   2013/02/13, 2013/03/27
+!                   2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -250,15 +250,15 @@
 
       if(ngrp.eq.1) then
 
-        ncuni=ncexp+20
+        ncuni=ncexp+25
 
         write(unifl(ncexp+1:ncexp+20),'(a20)') 'geography.united.bin'
 
       else
 
-        ncuni=ncexp+28
+        ncuni=ncexp+33
 
-        write(unifl(ncexp+1:ncexp+28),'(a13,i4.4,a11)')                 &
+        write(unifl(ncexp+1:ncexp+33),'(a13,i9.9,a11)')                 &
      &                  'geography.grp',mygrp,'.united.bin'
 
       end if
@@ -309,16 +309,16 @@
 
             if(ngrp.eq.1) then
 
-              ncdmp=ncexp+20
+              ncdmp=ncexp+25
 
-              write(dmpfl(ncexp+1:ncexp+20),'(a12,i4.4,a4)')            &
+              write(dmpfl(ncexp+1:ncexp+25),'(a12,i9.9,a4)')            &
      &                         'geography.pe',mysub,'.bin'
 
             else
 
-              ncdmp=ncexp+29
+              ncdmp=ncexp+34
 
-              write(dmpfl(ncexp+1:ncexp+29),'(a13,i4.4,a4,i4.4,a4)')    &
+              write(dmpfl(ncexp+1:ncexp+34),'(a13,i9.9,a4,i9.9,a4)')    &
      &                        'geography.grp',mygrp,'-sub',mysub,'.bin'
 
             end if
@@ -454,15 +454,15 @@
 
             if(ngrp.eq.1) then
 
-              ncdmp=ncexp+20
+              ncdmp=ncexp+25
 
               write(dmpfl(ncexp+1:ncexp+12),'(a12)') 'geography.pe'
 
             else
 
-              ncdmp=ncexp+29
+              ncdmp=ncexp+34
 
-              write(dmpfl(ncexp+1:ncexp+21),'(a13,i4.4,a4)')            &
+              write(dmpfl(ncexp+1:ncexp+26),'(a13,i9.9,a4)')            &
      &                        'geography.grp',mygrp,'-sub'
 
             end if
@@ -471,7 +471,7 @@
 
               call currpe('unite   ',5,'mysub')
 
-              write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
+              write(dmpfl(ncdmp-12:ncdmp),'(i9.9,a4)') mysub,'.bin'
 
               if(rmopt_uni.eq.1) then
 
@@ -620,22 +620,22 @@
 
         if(ngrp.eq.1) then
 
-          ncdmp=ncexp+20
+          ncdmp=ncexp+25
 
           write(dmpfl(ncexp+1:ncexp+12),'(a12)') 'geography.pe'
 
         else
 
-          ncdmp=ncexp+29
+          ncdmp=ncexp+34
 
-          write(dmpfl(ncexp+1:ncexp+21),'(a13,i4.4,a4)')                &
+          write(dmpfl(ncexp+1:ncexp+26),'(a13,i9.9,a4)')                &
      &                    'geography.grp',mygrp,'-sub'
 
         end if
 
         do mysub=0,nsub-1
 
-          write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
+          write(dmpfl(ncdmp-12:ncdmp),'(i9.9,a4)') mysub,'.bin'
 
           if(rmopt_uni.eq.1) then
 

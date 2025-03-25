@@ -14,7 +14,7 @@
 !                   2006/09/30, 2006/12/04, 2007/01/05, 2007/01/20,
 !                   2007/04/11, 2007/05/14, 2007/05/21, 2007/08/24,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/02/27,
-!                   2013/02/13, 2013/03/27
+!                   2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -266,20 +266,20 @@
 
           if(nsub.eq.1) then
 
-            write(dmpfl(ncexp+1:ncexp+29),'(a13,i4.4,a12)')             &
+            write(dmpfl(ncexp+1:ncexp+34),'(a13,i9.9,a12)')             &
      &                              'geography.grp',mygrp,'-sub0000.bin'
 
             if(rmopt_uni.eq.1) then
 
               open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+29),             &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+34),             &
      &             status='old',access='direct',form='unformatted',     &
      &             recl=sizdmp,action='readwrite')
 
             else
 
               open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+29),             &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+34),             &
      &             status='old',access='direct',form='unformatted',     &
      &             recl=sizdmp,action='read')
 
@@ -298,20 +298,20 @@
 
           else
 
-            write(dmpfl(ncexp+1:ncexp+28),'(a13,i4.4,a11)')             &
+            write(dmpfl(ncexp+1:ncexp+33),'(a13,i9.9,a11)')             &
      &                               'geography.grp',mygrp,'.united.bin'
 
             if(rmopt_uni.eq.1) then
 
               open(iodmp(0),iostat=stat,err=120,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+28),             &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+33),             &
      &             status='old',access='direct',form='unformatted',     &
      &             recl=sizdmp,action='readwrite')
 
             else
 
               open(iodmp(0),iostat=stat,err=120,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+28),             &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncexp+33),             &
      &             status='old',access='direct',form='unformatted',     &
      &             recl=sizdmp,action='read')
 

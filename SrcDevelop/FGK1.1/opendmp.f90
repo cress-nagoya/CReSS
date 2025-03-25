@@ -16,7 +16,7 @@
 !                   2007/10/19, 2008/01/11, 2008/04/17, 2008/05/02,
 !                   2008/07/01, 2008/08/25, 2008/10/10, 2008/12/11,
 !                   2009/02/27, 2011/09/22, 2013/01/28, 2013/02/13,
-!                   2013/03/27
+!                   2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -567,16 +567,16 @@
 
           if(ngrp.eq.1) then
 
-            nc3d=ncexp+22
+            nc3d=ncexp+27
 
-            write(fl3d(ncexp+1:ncexp+18),'(a3,i8.8,a3,i4.4)')           &
+            write(fl3d(ncexp+1:ncexp+23),'(a3,i8.8,a3,i9.9)')           &
      &               'dmp',ctime/1000_i8,'.pe',mysub
 
           else
 
-            nc3d=ncexp+31
+            nc3d=ncexp+36
 
-            write(fl3d(ncexp+1:ncexp+27),'(a3,i8.8,2(a4,i4.4))')        &
+            write(fl3d(ncexp+1:ncexp+32),'(a3,i8.8,2(a4,i9.9))')        &
      &               'dmp',ctime/1000_i8,'.grp',mygrp,'-sub',mysub
 
           end if
@@ -700,16 +700,16 @@
 
             if(ngrp.eq.1) then
 
-              nc2d=ncexp+22
+              nc2d=ncexp+27
 
-              write(fl2d(ncexp+1:ncexp+18),'(a3,i8.8,a3,i4.4)')         &
+              write(fl2d(ncexp+1:ncexp+23),'(a3,i8.8,a3,i9.9)')         &
      &                 'mon',ctime/1000_i8,'.pe',mysub
 
             else
 
-              nc2d=ncexp+31
+              nc2d=ncexp+36
 
-              write(fl2d(ncexp+1:ncexp+27),'(a3,i8.8,2(a4,i4.4))')      &
+              write(fl2d(ncexp+1:ncexp+32),'(a3,i8.8,2(a4,i9.9))')      &
      &                 'mon',ctime/1000_i8,'.grp',mygrp,'-sub',mysub
 
             end if

@@ -5,7 +5,8 @@
 !     Author      : Sakakibara Atsushi
 !     Date        : 2008/08/19
 !     Modification: 2008/08/25, 2008/10/10, 2008/12/11, 2009/01/30,
-!                   2009/02/27, 2013/01/28, 2013/02/13, 2013/03/27
+!                   2009/02/27, 2013/01/28, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -413,16 +414,16 @@
 
         if(ngrp.eq.1) then
 
-          ncfl=ncexp+18
+          ncfl=ncexp+23
 
-          write(sfcfl(ncexp+1:ncexp+18),'(a10,i4.4,a4)')                &
+          write(sfcfl(ncexp+1:ncexp+23),'(a10,i9.9,a4)')                &
      &                       'surface.pe',mysub,'.bin'
 
         else
 
-          ncfl=ncexp+27
+          ncfl=ncexp+32
 
-          write(sfcfl(ncexp+1:ncexp+27),'(a11,i4.4,a4,i4.4,a4)')        &
+          write(sfcfl(ncexp+1:ncexp+32),'(a11,i9.9,a4,i9.9,a4)')        &
      &                      'surface.grp',mygrp,'-sub',mysub,'.bin'
 
         end if

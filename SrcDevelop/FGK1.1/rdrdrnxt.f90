@@ -7,7 +7,7 @@
 !     Modification: 2007/08/24, 2007/09/25, 2008/05/02, 2008/07/25,
 !                   2008/08/25, 2008/10/10, 2009/01/05, 2009/01/30,
 !                   2009/02/27, 2009/03/23, 2009/11/13, 2011/08/18,
-!                   2011/09/22, 2013/02/13, 2013/03/27
+!                   2011/09/22, 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -544,16 +544,16 @@
 
             if(ngrp.eq.1) then
 
-              ncfl=ncexp+22
+              ncfl=ncexp+27
 
-              write(rdrfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i4.4,a4)')     &
+              write(rdrfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')     &
      &                         'rdr',daterd,'.pe',mysub,'.bin'
 
             else
 
-              ncfl=ncexp+31
+              ncfl=ncexp+36
 
-              write(rdrfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i4.4),a4)')  &
+              write(rdrfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')  &
      &            'rdr',daterd,'.grp',mygrp,'-sub',mysub,'.bin'
 
             end if

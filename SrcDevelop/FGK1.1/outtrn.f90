@@ -13,7 +13,7 @@
 !                   2005/02/10, 2006/09/21, 2006/12/04, 2007/01/05,
 !                   2007/01/20, 2007/08/24, 2008/05/02, 2008/08/25,
 !                   2008/10/10, 2009/01/30, 2009/02/27, 2013/02/13,
-!                   2013/03/27
+!                   2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -392,16 +392,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+ncdvn+11
+        ncfl=ncexp+ncdvn+16
 
-        write(trnfl(ncexp+ncdvn+1:ncexp+ncdvn+11),'(a3,i4.4,a4)')       &
+        write(trnfl(ncexp+ncdvn+1:ncexp+ncdvn+16),'(a3,i9.9,a4)')       &
      &                                '.pe',mysub,'.bin'
 
       else
 
-        ncfl=ncexp+ncdvn+20
+        ncfl=ncexp+ncdvn+25
 
-        write(trnfl(ncexp+ncdvn+1:ncexp+ncdvn+20),'(2(a4,i4.4),a4)')    &
+        write(trnfl(ncexp+ncdvn+1:ncexp+ncdvn+25),'(2(a4,i9.9),a4)')    &
      &                               '.grp',mygrp,'-sub',mysub,'.bin'
 
       end if

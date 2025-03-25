@@ -4,7 +4,7 @@
 
 !     Author      : Sakakibara Atsushi
 !     Date        : 2011/09/22
-!     Modification: 2013/02/13, 2013/03/27
+!     Modification: 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -395,16 +395,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+22
+        ncfl=ncexp+27
 
-        write(aslfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i4.4,a4)')           &
+        write(aslfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')           &
      &            'asl',ctime/1000_i8,'.pe',mysub,'.bin'
 
       else
 
-        ncfl=ncexp+31
+        ncfl=ncexp+36
 
-        write(aslfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i4.4),a4)')        &
+        write(aslfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')        &
      &            'asl',ctime/1000_i8,'.grp',mygrp,'-sub',mysub,'.bin'
 
       end if
