@@ -13,7 +13,8 @@
 !                   2007/01/05, 2007/01/20, 2007/04/11, 2007/05/14,
 !                   2007/08/24, 2008/01/11, 2008/04/17, 2008/05/02,
 !                   2008/08/25, 2008/10/10, 2009/01/30, 2009/02/27,
-!                   2011/08/09, 2011/09/22, 2013/02/13, 2013/03/27
+!                   2011/08/09, 2011/09/22, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -552,6 +553,15 @@
 
         end if
 
+      else if(dmpfmt.eq.3) then
+
+        write(geofl(ncfl-3:ncfl),'(a4)') '.bin'
+
+        open(iogeo,iostat=stat,err=160,                                 &
+     &       file=crsdir(1:nccrs)//geofl(1:ncfl),                       &
+     &       status='new',access='stream',form='unformatted',           &
+     &       action='write')
+
       end if
 
   150 call chkerr(stat)
@@ -688,6 +698,45 @@
 
           write(iogeo,rec=recgeo,iostat=stat,err=170)                   &
      &         ((real(land(i,j)),i=2,ni-2),j=2,nj-2)
+
+        end if
+
+      else if(dmpfmt.eq.3) then
+
+        write(iogeo,iostat=stat,err=170)                                &
+     &              ((ht(i,j),i=2,ni-2),j=2,nj-2)
+
+        write(iogeo,iostat=stat,err=170)                                &
+     &              ((lat(i,j),i=2,ni-2),j=2,nj-2)
+
+        write(iogeo,iostat=stat,err=170)                                &
+     &              ((lon(i,j),i=2,ni-2),j=2,nj-2)
+
+        if(mfcopt.eq.1) then
+
+          write(iogeo,iostat=stat,err=170)                              &
+     &                ((mf(i,j),i=2,ni-2),j=2,nj-2)
+
+        end if
+
+        if(abs(coropt).ge.1) then
+
+          write(iogeo,iostat=stat,err=170)                              &
+     &                ((4.e0*fc(i,j,1),i=2,ni-2),j=2,nj-2)
+
+          if(abs(coropt).eq.2) then
+
+            write(iogeo,iostat=stat,err=170)                            &
+     &                  ((4.e0*fc(i,j,2),i=2,ni-2),j=2,nj-2)
+
+          end if
+
+        end if
+
+        if(sfcopt.ge.1) then
+
+          write(iogeo,iostat=stat,err=170)                              &
+     &                ((real(land(i,j)),i=2,ni-2),j=2,nj-2)
 
         end if
 
