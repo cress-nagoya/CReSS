@@ -15,7 +15,8 @@
 !                   2007/04/11, 2007/05/21, 2007/06/27, 2007/07/30,
 !                   2007/08/24, 2007/09/28, 2008/01/11, 2008/04/17,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2008/12/11,
-!                   2009/01/30, 2009/02/27, 2013/02/13, 2013/03/27
+!                   2009/01/30, 2009/02/27, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -97,6 +98,7 @@
 !***********************************************************************
       subroutine s_unidrv(fpfltyp_uni,fpiniopt,fpdmpmon,                &
      &                    fpuniopt_uni,fpugroup_uni,fpflitv_uni,        &
+     &                    fpbufsz_uni,                                  &
      &                    ni,nj,nk,tmp1,tmp2,tmp3,tmp4,                 &
      &                    ni_uni,nj_uni,var,nio_uni,iodmp)
 !***********************************************************************
@@ -120,6 +122,9 @@
 
       integer, intent(in) :: fpflitv_uni
                        ! Formal parameter of unique index of flitv_uni
+
+      integer, intent(in) :: fpbufsz_uni
+                       ! Formal parameter of unique index of fpbufsz_uni
 
       integer, intent(in) :: ni
                        ! Model dimension in x direction
@@ -177,6 +182,8 @@
 
       real flitv_uni   ! Time interval of processed file
 
+      real bufsz_uni   ! Buffer size
+
       real, intent(inout) :: tmp1(1:nk)
                        ! Temporary array
 
@@ -208,6 +215,7 @@
       call getiname(fpuniopt_uni,uniopt_uni)
       call getiname(fpugroup_uni,ugroup_uni)
       call getrname(fpflitv_uni,flitv_uni)
+      call getrname(fpbufsz_uni,bufsz_uni)
 
 ! -----
 
@@ -409,7 +417,8 @@
                   call currpe('unite   ',5,'mygrp')
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
-     &                          idwlngth,idrmopt_uni,ctime,nx,ny,       &
+     &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end do
@@ -422,9 +431,10 @@
 
                     call currpe('unite   ',5,'mygrp')
 
-                    call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,    &
-     &                            idwlngth,idrmopt_uni,ctime,nx,ny,     &
-     &                            ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
+                  call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
+     &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
+     &                          ctime,nx,ny,                            &
+     &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                   end do
 
@@ -437,7 +447,8 @@
                     call currpe('unite   ',5,'mygrp')
 
                     call unimongr(idexprim,idcrsdir,idncexp,idnccrs,    &
-     &                            idwlngth,idrmopt_uni,ctime,nx,ny,     &
+    &                            idwlngth,idrmopt_uni,idbufsz_uni,      &
+    &                            ctime,nx,ny,                           &
      &                            ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                   end do
@@ -460,16 +471,17 @@
 
               if(dmpmon.eq.0) then
 
-                call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,        &
-     &                        idwlngth,idrmopt_uni,ctime,nx,ny,         &
-     &                        ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
-
+                  call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
+     &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
+     &                          ctime,nx,ny,                            &
+     &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
               else
 
                 if(fltyp_uni(1:3).ne.'mon') then
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
-     &                          idwlngth,idrmopt_uni,ctime,nx,ny,       &
+     &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end if
@@ -477,7 +489,8 @@
                 if(fltyp_uni(1:3).ne.'dmp') then
 
                   call unimongr(idexprim,idcrsdir,idncexp,idnccrs,      &
-     &                          idwlngth,idrmopt_uni,ctime,nx,ny,       &
+    &                          idwlngth,idrmopt_uni,idbufsz_uni,        &
+    &                          ctime,nx,ny,                             &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end if

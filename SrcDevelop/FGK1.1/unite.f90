@@ -13,7 +13,7 @@
 !                   2007/01/20, 2007/04/11, 2007/06/27, 2007/07/30,
 !                   2008/01/11, 2008/04/17, 2008/05/02, 2008/08/25,
 !                   2008/10/10, 2009/01/30, 2009/02/27, 2011/08/18,
-!                   2011/09/22, 2013/02/13
+!                   2011/09/22, 2013/02/13, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -120,7 +120,8 @@
 ! Generate the united file from the dumped files.
 
       call unidrv(idfltyp_uni,idiniopt,iddmpmon,                        &
-     &            iduniopt_uni,idugroup_uni,idflitv_uni,ni,nj,nk,       &
+     &            iduniopt_uni,idugroup_uni,idflitv_uni,idbufsz_uni,    &
+     &            ni,nj,nk,                                             &
      &            tmp1,tmp2,tmp3,tmp4,ni_uni,nj_uni,var,nio_uni,iodmp)
 
 ! -----
