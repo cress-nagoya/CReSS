@@ -456,12 +456,12 @@
 
           if(ngrp.eq.1) then
 
-            write(aslfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(aslfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(aslfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(aslfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(aslfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(aslfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 

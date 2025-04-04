@@ -667,12 +667,12 @@
 
               if(ngrp.eq.1) then
 
-                write(fl3d(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+                write(fl3d(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
               else
 
-                write(fl3d(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-                write(fl3d(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+                write(fl3d(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+                write(fl3d(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
               end if
 
@@ -800,12 +800,12 @@
 
                 if(ngrp.eq.1) then
 
-                  write(fl2d(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+                  write(fl2d(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
                 else
 
-                  write(fl2d(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-                  write(fl2d(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+                  write(fl2d(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+                  write(fl2d(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
                 end if
 

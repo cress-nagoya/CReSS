@@ -459,12 +459,12 @@
 
           if(ngrp.eq.1) then
 
-            write(sfcfl(ncexp+11:ncexp+14),'(a4)') 'XXXX'
+            write(sfcfl(ncexp+11:ncexp+19),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(sfcfl(ncexp+12:ncexp+15),'(a4)') 'XXXX'
-            write(sfcfl(ncexp+20:ncexp+23),'(a4)') 'YYYY'
+            write(sfcfl(ncexp+12:ncexp+20),'(a9)') 'XXXXXXXXX'
+            write(sfcfl(ncexp+20:ncexp+28),'(a9)') 'YYYYYYYYY'
 
           end if
 

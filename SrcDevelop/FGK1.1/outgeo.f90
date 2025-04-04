@@ -581,12 +581,12 @@
 
           if(ngrp.eq.1) then
 
-            write(geofl(ncexp+13:ncexp+16),'(a4)') 'XXXX'
+            write(geofl(ncexp+13:ncexp+21),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(geofl(ncexp+14:ncexp+17),'(a4)') 'XXXX'
-            write(geofl(ncexp+22:ncexp+25),'(a4)') 'YYYY'
+            write(geofl(ncexp+14:ncexp+22),'(a9)') 'XXXXXXXXX'
+            write(geofl(ncexp+22:ncexp+30),'(a9)') 'YYYYYYYYY'
 
           end if
 

@@ -456,12 +456,12 @@
 
           if(ngrp.eq.1) then
 
-            write(trnfl(ncexp+ncdvn+4:ncexp+ncdvn+7),'(a4)') 'XXXX'
+            write(trnfl(ncexp+ncdvn+4:ncexp+ncdvn+12),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(trnfl(ncexp+ncdvn+5:ncexp+ncdvn+8),'(a4)') 'XXXX'
-            write(trnfl(ncexp+ncdvn+13:ncexp+ncdvn+16),'(a4)') 'YYYY'
+            write(trnfl(ncexp+ncdvn+5:ncexp+ncdvn+13),'(a9)') 'XXXXXXXXX'
+            write(trnfl(ncexp+ncdvn+13:ncexp+ncdvn+21),'(a9)') 'YYYYYYYYY'
 
           end if
 

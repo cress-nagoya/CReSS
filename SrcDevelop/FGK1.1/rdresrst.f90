@@ -801,12 +801,12 @@
 
           if(ngrp.eq.1) then
 
-            write(resfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(resfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(resfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(resfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(resfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(resfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 

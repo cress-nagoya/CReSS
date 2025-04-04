@@ -430,12 +430,12 @@
 
           if(ngrp.eq.1) then
 
-            write(resfl(ncprv+4:ncprv+7),'(a4)') 'XXXX'
+            write(resfl(ncprv+4:ncprv+12),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(resfl(ncprv+5:ncprv+8),'(a4)') 'XXXX'
-            write(resfl(ncprv+13:ncprv+16),'(a4)') 'YYYY'
+            write(resfl(ncprv+5:ncprv+13),'(a9)') 'XXXXXXXXX'
+            write(resfl(ncprv+13:ncprv+21),'(a9)') 'YYYYYYYYY'
 
           end if
 

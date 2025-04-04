@@ -752,12 +752,12 @@
 
           if(ngrp.eq.1) then
 
-            write(rstfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(rstfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(rstfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(rstfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(rstfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(rstfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 
