@@ -1,0 +1,1148 @@
+################################################################################
+#                                                                              #
+#     Include file, Make_object                                                #
+#                                                                              #
+#     This file specifies the module dependence of object files.               #
+#                                                                              #
+#     Author      : Sakakibara Atsushi                                         #
+#     Date        : 2004/09/25                                                 #
+#     Modification: 2004/12/17, 2005/01/07, 2005/01/31, 2005/02/10,            #
+#                   2005/04/04, 2005/08/05, 2005/10/05, 2005/11/22,            #
+#                   2006/01/10, 2006/02/13, 2006/03/06, 2006/04/03,            #
+#                   2006/05/12, 2006/06/21, 2006/09/30, 2006/11/06,            #
+#                   2006/12/04, 2007/01/05, 2007/01/20, 2007/01/31,            #
+#                   2007/03/23, 2007/04/11, 2007/05/07, 2007/05/14,            #
+#                   2007/06/18, 2007/06/27, 2007/07/30, 2007/08/24,            #
+#                   2007/10/19, 2007/11/26, 2008/01/11, 2008/03/12,            #
+#                   2008/04/17, 2008/05/02, 2008/06/09, 2008/07/01,            #
+#                   2008/08/19, 2008/10/10, 2008/12/11, 2009/01/30,            #
+#                   2009/03/12, 2009/06/16, 2009/08/20, 2009/12/05,            #
+#                   2010/05/17, 2010/09/22, 2011/01/14, 2011/03/18,            #
+#                   2011/03/29, 2011/05/16, 2011/06/01, 2011/08/18,            #
+#                   2011/09/22, 2011/11/10, 2011/12/17, 2013/02/11,            #
+#                   2013/02/13, 2013/10/08                                     #
+#                                                                              #
+################################################################################
+
+abortslv.o       : m_chkerr.mod m_comfile.mod m_comkind.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_inichar.mod
+adjstnci.o       : m_comphy.mod
+adjstni.o        : m_commath.mod m_comphy.mod m_getiname.mod
+adjstnp.o        : m_commath.mod m_comphy.mod m_getiname.mod
+adjstnsg.o       : m_commath.mod m_comphy.mod m_getiname.mod
+adjstnw.o        : m_commath.mod m_comphy.mod
+adjstq.o         : m_getiname.mod
+adjstuv.o        : m_commpi.mod m_comphy.mod m_getiname.mod m_getrname.mod\
+                   m_reducelb.mod m_reducevb.mod
+advbspe.o        : m_comphy.mod
+advbspi.o        : m_comphy.mod m_getrname.mod
+advbspt.o        : m_getiname.mod m_getrname.mod
+advp.o           : m_commath.mod m_getiname.mod m_getrname.mod
+advs.o           : m_commath.mod m_getiname.mod m_getrname.mod
+advuvw.o         : m_commath.mod m_getiname.mod m_getrname.mod
+aerophy.o        : m_comaero.mod m_comphy.mod m_getiname.mod\
+                   m_copy3d.mod m_copy4d.mod m_setcst3d.mod
+aggregat.o       : m_commath.mod m_comphy.mod
+allocasl.o       : m_chkerr.mod m_comasl.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_setcst1d.mod m_setcst2d.mod m_setcst3d.mod\
+                   m_setcst4d.mod
+allocbuf.o       : m_chkerr.mod m_combuf.mod m_comgrp.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod m_getiname.mod
+allocgpv.o       : m_chkerr.mod m_comgpv.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_setcst1d.mod m_setcst2d.mod m_setcst3d.mod
+allocgrp.o       : m_chkerr.mod m_comgrp.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod
+allociot.o       : m_chkerr.mod m_comfile.mod m_comionum.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod
+allocmph.o       : m_chkerr.mod m_combin.mod m_comblk.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod m_getiname.mod m_setcst1d.mod\
+                   m_setcst2d.mod m_setcst3d.mod m_temparam.mod
+allocrdr.o       : m_chkerr.mod m_commpi.mod m_comrdr.mod m_cpondpe.mod\
+                   m_destroy.mod m_setcst1d.mod m_setcst2d.mod m_setcst3d.mod
+allocrst.o       : m_chkerr.mod m_commpi.mod m_comrst.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_setcst2d.mod m_setcst3d.mod m_setcst4d.mod
+allocsfc.o       : m_chkerr.mod m_commpi.mod m_comsfc.mod m_cpondpe.mod\
+                   m_destroy.mod m_setcst2d.mod
+allocslv.o       : m_chkerr.mod m_commpi.mod m_comslv.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_setcst1d.mod m_setcst2d.mod m_setcst3d.mod m_setcst4d.mod
+alloctrn.o       : m_chkerr.mod m_commpi.mod m_comtrn.mod m_cpondpe.mod\
+                   m_destroy.mod m_setcst2d.mod
+allocuni.o       : m_chkerr.mod m_comionum.mod m_commpi.mod m_comuni.mod\
+                   m_cpondpe.mod m_destroy.mod m_getiname.mod
+asldata.o        : m_allocasl.mod m_allocgrp.mod m_allociot.mod m_chkkind.mod\
+                   m_comasl.mod m_comindx.mod m_defdim.mod m_endmpi.mod\
+                   m_asldrv.mod m_inidef.mod m_inimpi.mod m_ininame.mod\
+                   m_rdgrp.mod m_setdays.mod m_setdim.mod m_setnlasl.mod
+asldrv.o         : m_aslstep.mod m_chkasl.mod m_chkerr.mod m_chkstd.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_copy3d.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getdate.mod\
+                   m_getrname.mod m_getxy.mod m_getz.mod m_getzph.mod\
+                   m_inichar.mod m_intrpasl.mod m_outasl.mod m_outstd05.mod\
+                   m_rdaero.mod m_setproj.mod m_vint31a.mod m_xy2ll.mod
+aslstep.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+baserho.o        : m_bcyclex.mod m_bcycley.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod m_var8uvw.mod
+bbcw.o           : m_getiname.mod
+bc2d.o           : m_commpi.mod m_getiname.mod
+bc4news.o        : m_commpi.mod m_getiname.mod
+bc8u.o           : m_commpi.mod m_getiname.mod
+bc8v.o           : m_commpi.mod m_getiname.mod
+bc8w.o           : m_getiname.mod
+bcasl.o          : m_bcycle.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+bcbase.o         : m_bcyclex.mod m_bcycley.mod m_combuf.mod m_comindx.mod\
+                   m_comphy.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod
+bcgpv.o          : m_bcycle.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getcname.mod m_getiname.mod m_inichar.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+bcgsms.o         : m_commpi.mod m_getiname.mod
+bcgsmu.o         : m_commpi.mod m_getiname.mod
+bcgsmv.o         : m_commpi.mod m_getiname.mod
+bcgsmw.o         : m_commpi.mod m_getiname.mod
+bcini.o          : m_bcycle.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getcname.mod m_getiname.mod m_inichar.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+bcrdr.o          : m_bcycle.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getcname.mod m_getiname.mod m_inichar.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+bcrdrqp.o        : m_bcycle.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+bcsst.o          : m_bc2d.mod m_bcycle.mod m_bcyclex.mod m_combuf.mod\
+                   m_comindx.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod
+bcten.o          : m_getiname.mod
+bcycle.o         : m_commpi.mod m_getiname.mod
+bcyclex.o        : m_commpi.mod m_getiname.mod
+bcycley.o        : m_commpi.mod m_getiname.mod
+bruntv.o         : m_comphy.mod m_getiname.mod m_getrname.mod
+bulksfc.o        : m_commath.mod m_comphy.mod
+buoywb.o         : m_comphy.mod m_getiname.mod
+buoywse.o        : m_comphy.mod m_getiname.mod
+buoywsi.o        : m_comphy.mod m_getiname.mod m_getrname.mod
+castgrp_multi.o  : m_comgrp.mod m_commpi.mod m_defmpi.mod
+castname_multi.o : m_commpi.mod m_comname.mod m_defmpi.mod
+castvar.o        : m_commpi.mod m_defmpi.mod
+charging.o       : m_comphy.mod m_comtable.mod
+check.o          : m_chkkind.mod m_chkname.mod m_ini0name.mod m_inierr.mod\
+                   m_inimpi.mod m_outstd02.mod m_outstd05.mod
+chkasl.o         : m_chkmxn.mod m_comkind.mod m_outstd12.mod
+chkbyte.o        : m_chkerr.mod m_comdmp.mod m_comfile.mod m_comkind.mod\
+                   m_commpi.mod m_cpondpe.mod m_destroy.mod m_getunit.mod\
+                   m_putunit.mod
+chkerr_multi.o   : m_commpi.mod m_defmpi.mod
+chkerr_single.o  : m_commpi.mod
+chkfall.o        : m_commpi.mod m_defmpi.mod
+chkfile.o        : m_comindx.mod m_commath.mod m_destroy.mod
+chkgpv.o         : m_chkmxn.mod m_comkind.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_outstd12.mod
+chkitr.o         : m_commpi.mod m_defmpi.mod
+chkkind.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod
+chkmoist.o       : m_commath.mod m_commpi.mod m_defmpi.mod
+chkmxn.o         : m_comkind.mod m_commath.mod m_destroy.mod m_outstd12.mod
+chkname.o        : m_chkerr.mod m_chknlgpv.mod m_chknlrdr.mod m_chknlrst.mod\
+                   m_chknlsfc.mod m_chknlslv.mod m_chknltrn.mod m_chknluni.mod\
+                   m_chkstd.mod m_comkind.mod m_commpi.mod m_destroy.mod\
+                   m_outstd04.mod m_outstd13.mod m_outstd16.mod m_rdconf.mod
+chknlasl.o       : m_comkind.mod m_commath.mod m_comphy.mod m_defname.mod\
+                   m_destroy.mod m_numchar.mod m_outstd14.mod m_outstd15.mod
+chknlgpv.o       : m_comkind.mod m_commath.mod m_comphy.mod m_defname.mod\
+                   m_destroy.mod m_numchar.mod m_outstd14.mod m_outstd15.mod
+chknlrdr.o       : m_comkind.mod m_commath.mod m_comphy.mod m_defname.mod\
+                   m_destroy.mod m_numchar.mod m_outstd14.mod m_outstd15.mod
+chknlrst.o       : m_comkind.mod m_defname.mod m_destroy.mod m_numchar.mod\
+                   m_outstd14.mod
+chknlsfc.o       : m_comkind.mod m_commath.mod m_comphy.mod m_defname.mod\
+                   m_destroy.mod m_numchar.mod m_outstd14.mod m_outstd15.mod
+chknlslv.o       : m_comkind.mod m_commath.mod m_commpi.mod m_comphy.mod\
+                   m_defname.mod m_destroy.mod m_numchar.mod m_outstd14.mod\
+                   m_outstd15.mod
+chknltrn.o       : m_commath.mod m_comphy.mod m_defname.mod m_destroy.mod\
+                   m_numchar.mod m_outstd14.mod m_outstd15.mod
+chknluni.o       : m_comkind.mod m_commath.mod m_comphy.mod m_defname.mod\
+                   m_destroy.mod m_numchar.mod m_outstd14.mod m_outstd15.mod
+chkopen_multi.o  : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_defmpi.mod\
+                   m_destroy.mod
+chkopen_single.o : m_chkerr.mod m_commpi.mod m_comsave.mod m_cpondpe.mod\
+                   m_destroy.mod
+chkrain.o        : m_comphy.mod m_getiname.mod
+chkrdr.o         : m_chkmxn.mod m_comkind.mod m_getcname.mod m_inichar.mod\
+                   m_outstd12.mod
+chksat.o         : m_comphy.mod m_getindx.mod
+chkstd_multi.o   : m_commpi.mod m_comstd.mod m_defmpi.mod
+closedmp.o       : m_chkerr.mod m_chkstd.mod m_comdmp.mod m_comkind.mod\
+                   m_commpi.mod m_cpondpe.mod m_destroy.mod m_getiname.mod\
+                   m_outstd03.mod m_outstd08.mod m_putunit.mod
+cloudcov.o       : m_commath.mod m_comphy.mod m_comtable.mod m_getiname.mod\
+                   m_getrname.mod
+cloudphy.o       : m_coldblk.mod m_comindx.mod m_diagnsg.mod m_diagnw.mod\
+                   m_getexner.mod m_getiname.mod m_getvdens.mod m_warmbin.mod\
+                   m_warmblk.mod
+cnt2phy.o        : m_getiname.mod
+coalbw.o         : m_remapbw.mod
+coldblk.o        : m_adjstnci.mod m_adjstni.mod m_adjstnp.mod m_adjstnsg.mod\
+                   m_adjstnw.mod m_comblk.mod m_comindx.mod m_fallblk.mod\
+                   m_getiname.mod m_getrname.mod m_srcblk.mod m_temparam.mod\
+                   m_termblk.mod
+collc2r.o        : m_getrname.mod
+collect.o        : m_commath.mod m_comphy.mod
+convers.o        : m_commath.mod m_comphy.mod
+cpondpe_multi.o  : m_commpi.mod m_defmpi.mod
+cpondsfc.o       : m_chkerr.mod m_commath.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getindx.mod m_setcst2d.mod
+cpondtrn.o       : m_commpi.mod m_getiname.mod
+culintg.o        : m_comindx.mod m_stepcul.mod
+currpe.o         : m_comgrp.mod m_commpi.mod
+curveuvw.o       : m_comphy.mod m_getiname.mod
+dbz2kg.o         : m_commath.mod m_getrname.mod
+defomten.o       : m_bc8w.mod m_bc8u.mod m_bc8v.mod m_bcten.mod m_comindx.mod\
+                   m_getiname.mod m_getrname.mod
+depsit.o         : m_commath.mod m_comphy.mod m_comtable.mod
+depsitbw.o       : m_commath.mod m_comphy.mod m_remapbw.mod
+destroy.o        : m_comerr.mod m_endmpi.mod
+diabat.o         : m_advp.mod m_comindx.mod m_comphy.mod m_getiname.mod\
+                   m_phy2cnt.mod m_smoo2p.mod m_smoo4p.mod
+diagnci.o        : m_comphy.mod
+diagni.o         : m_commath.mod m_comphy.mod m_getiname.mod
+diagnsg.o        : m_commath.mod m_comphy.mod m_getiname.mod
+diagnw.o         : m_commath.mod m_comphy.mod
+diffequa.o       : m_bc4news.mod m_bcphi.mod m_bcycle.mod m_chkitr.mod\
+                   m_combuf.mod m_comindx.mod m_commath.mod m_getbufgx.mod\
+                   m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod m_getrname.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsy.mod m_shiftsx.mod
+disptke.o        : m_commath.mod m_getiname.mod m_getrname.mod
+distrpg.o        : m_comphy.mod
+distrqp.o        : m_commath.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod m_temparam.mod
+diver2d.o        : m_getiname.mod m_getrname.mod
+diver3d.o        : m_getiname.mod m_getrname.mod
+diverpe.o        : m_comindx.mod m_diver3d.mod
+diverpih.o       : m_comindx.mod m_diver2d.mod m_getiname.mod m_getrname.mod
+diverpiv.o       : m_getrname.mod
+eddydif.o        : m_comphy.mod m_getiname.mod
+eddypbl.o        : m_commath.mod m_comphy.mod m_getiname.mod m_getrname.mod
+eddyvis.o        : m_commath.mod m_comphy.mod m_getiname.mod m_getrname.mod
+eddyvisj.o       : m_getiname.mod
+emitqt.o         : m_comindx.mod m_commath.mod m_getiname.mod m_getrname.mod\
+                   m_getxy.mod
+endmpi_multi.o   : m_commpi.mod m_defmpi.mod m_outstd02.mod
+endmpi_single.o  : m_outstd02.mod
+estimsfc.o       : m_getiname.mod
+evapr2v.o        : m_comphy.mod m_getrname.mod
+exbcpt.o         : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+exbcq.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+exbcss.o         : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+exbcu.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+exbcv.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+exbcw.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+fallblk.o        : m_chkfall.mod m_comindx.mod m_commath.mod m_getiname.mod\
+                   m_getrname.mod m_temparam.mod m_upwnp.mod m_upwqcg.mod\
+                   m_upwqp.mod
+fallbw.o         : m_chkfall.mod m_comindx.mod m_commath.mod m_getrname.mod\
+                   m_termbw3d.mod m_upwnbin.mod m_upwmbin.mod
+fallqr.o         : m_chkfall.mod m_comindx.mod m_commath.mod m_getrname.mod\
+                   m_upwqp.mod
+fdmdrv.o         : m_comindx.mod m_comkind.mod m_forcedrv.mod m_smalldrv.mod\
+                   m_steps.mod
+fituvwc.o        : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_getrname.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod m_vbcwc.mod
+forcedrv.o       : m_comindx.mod m_comkind.mod m_eddydif.mod m_forcep.mod\
+                   m_forces.mod m_forcetke.mod m_forceuvw.mod m_getiname.mod\
+                   m_initke.mod
+forcep.o         : m_advp.mod m_comindx.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lspp.mod m_p2gpv.mod m_smoo2p.mod\
+                   m_smoo4p.mod m_vspp.mod
+forcept.o        : m_advbspt.mod m_advs.mod m_comindx.mod m_getcname.mod\
+                   m_getiname.mod m_inichar.mod m_lsps.mod m_nlsms.mod\
+                   m_s2gpv.mod m_smoo2s.mod m_smoo4s.mod m_turbflx.mod\
+                   m_turbs.mod m_vsps.mod
+forceq.o         : m_advs.mod m_comindx.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lsps.mod m_lsps0.mod m_nlsms.mod\
+                   m_qp2rdr.mod m_s2gpv.mod m_smoo2s.mod m_smoo4s.mod\
+                   m_turbflx.mod m_turbs.mod m_vsps.mod m_vsps0.mod
+forceqa.o        : m_advs.mod m_comindx.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lsps.mod m_s2gpv.mod m_smoo2s.mod\
+                   m_smoo4s.mod m_turbflx.mod m_turbs.mod m_vsps.mod
+forceqcg.o       : m_advs.mod m_comindx.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lsps0.mod m_smoo2s.mod m_smoo4s.mod\
+                   m_turbflx.mod m_turbs.mod m_vsps0.mod
+forceqt.o        : m_advs.mod m_comindx.mod m_comkind.mod m_emitqt.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod\
+                   m_lsps0.mod m_smoo2s.mod m_smoo4s.mod m_turbflx.mod\
+                   m_turbs.mod m_vsps0.mod
+forceqv.o        : m_advs.mod m_comindx.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lspqv.mod m_nlsmqv.mod m_s2gpv.mod\
+                   m_smoo2qv.mod m_smoo4qv.mod m_turbflx.mod m_turbs.mod\
+                   m_vspqv.mod
+forces.o         : m_comindx.mod m_comkind.mod m_forcept.mod m_forceq.mod\
+                   m_forceqa.mod m_forceqcg.mod m_forceqt.mod m_forceqv.mod\
+                   m_getiname.mod m_kh8uv.mod m_ndgsat.mod
+forcesfc.o       : m_comphy.mod
+forcetke.o       : m_advs.mod m_buoytke.mod m_comindx.mod m_disptke.mod\
+                   m_eddydif.mod m_eddyvisj.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lsps0.mod m_sheartke.mod m_smoo2s.mod\
+                   m_smoo4s.mod m_tkeflx.mod m_turbtke.mod m_vsps0.mod
+forceuvw.o       : m_advuvw.mod m_buoywb.mod m_comindx.mod m_coriuv.mod\
+                   m_coriuvw.mod m_curveuvw.mod m_getiname.mod m_lspuvw.mod\
+                   m_nlsmuvw.mod m_phy2cnt.mod m_rstuvwc.mod m_setcst3d.mod\
+                   m_smoo2uvw.mod m_smoo4uvw.mod m_turbdrv.mod m_uvw2gpv.mod\
+                   m_uvw2rdr.mod m_vspuvw.mod
+freezing.o       : m_commath.mod m_comphy.mod
+gaussel.o        : m_getiname.mod
+get1d.o          : m_chkerr.mod m_comindx.mod m_commath.mod m_commpi.mod\
+                   m_comphy.mod m_copy1d.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_inichar.mod m_setcst1d.mod m_vextlow.mod\
+                   m_vextund.mod m_vint11.mod
+getarea.o        : m_commpi.mod m_getiname.mod m_getrname.mod m_reducelb.mod\
+                   m_reducevb.mod
+getbase.o        : m_getcname.mod m_inichar.mod m_var8w8s.mod m_var8w8u.mod\
+                   m_var8w8v.mod m_vint13.mod
+getbufgx.o       : m_commpi.mod m_getiname.mod
+getbufgy.o       : m_commpi.mod m_getiname.mod
+getbufsx.o       : m_commpi.mod m_getiname.mod
+getbufsy.o       : m_commpi.mod m_getiname.mod
+getcname.o       : m_comname.mod
+getdate.o        : m_chkerr.mod m_comdays.mod m_comkind.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod
+getetop.o        : m_commath.mod m_getiname.mod m_temparam.mod
+getexner.o       : m_comphy.mod
+getgamma.o       : m_comkind.mod m_commath.mod
+getiname.o       : m_comname.mod
+getkref.o        : m_commath.mod m_getiname.mod
+getllsw.o        : m_comindx.mod m_commath.mod m_commpi.mod m_getiname.mod\
+                   m_getrname.mod m_setproj.mod
+getmxn.o         : m_combuf.mod m_commath.mod m_commpi.mod m_defmpi.mod
+getname.o        : m_comname.mod
+getnews.o        : m_comindx.mod m_commpi.mod m_getrij.mod m_newsindx.mod
+getpt0.o         : m_bcycle.mod m_combuf.mod m_comindx.mod m_commath.mod\
+                   m_commpi.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_getrname.mod m_getxy.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_setcst3d.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+getqt0.o         : m_bcycle.mod m_combuf.mod m_comindx.mod m_commath.mod\
+                   m_commpi.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_getrname.mod m_getxy.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+getqvs.o         : m_comphy.mod
+getrich.o        : m_comphy.mod
+getrij.o         : m_comindx.mod m_getxy.mod m_ll2xy.mod m_xy2ij.mod m_xy2ll.mod
+getrname.o       : m_comname.mod
+gettime.o        : m_comkind.mod m_commath.mod m_getiname.mod m_getrname.mod
+gettlcl.o        : m_comphy.mod
+gettrn.o         : m_comindx.mod m_getiname.mod m_getrname.mod m_rdtrn.mod
+getunit.o        : m_comionum.mod
+getxy.o          : m_commpi.mod m_getrname.mod
+getz.o           : m_getrname.mod
+getz11.o         : m_getrname.mod
+getzph.o         : m_bc2d.mod m_comindx.mod m_getiname.mod m_gettrn.mod\
+                   m_getxy.mod m_phycood.mod
+gpvdrv.o         : m_chkerr.mod m_chkgpv.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_currpe.mod m_destroy.mod\
+                   m_get1d.mod m_getbase.mod m_getcname.mod m_getdate.mod\
+                   m_getiname.mod m_getnews.mod m_getrname.mod m_getxy.mod\
+                   m_getz11.mod m_getzph.mod m_gpvstep.mod m_inichar.mod\
+                   m_intrpgpv.mod m_outgpv.mod m_outstd05.mod m_pc2kg.mod\
+                   m_rdgpv.mod m_rotuvm2s.mod m_rotuvs2m.mod m_setproj.mod\
+                   m_sparprt.mod m_t2pt.mod m_trndamp.mod m_vintbase.mod\
+                   m_vintgpv.mod m_xy2ll.mod
+gpvstep.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+gridata.o        : m_allocgpv.mod m_allocgrp.mod m_allociot.mod m_chkkind.mod\
+                   m_comgpv.mod m_comindx.mod m_defdim.mod m_endmpi.mod\
+                   m_gpvdrv.mod m_inidef.mod m_inimpi.mod m_ininame.mod\
+                   m_rdgrp.mod m_setdays.mod m_setdim.mod m_setnlgpv.mod
+gseidel.o        : m_chkitr.mod m_commath.mod m_copy2d.mod m_copy3d.mod\
+                   m_getrname.mod m_setcst2d.mod m_setcst3d.mod
+gsmoos.o         : m_bc4news.mod m_bcgsms.mod m_bcycle.mod m_combuf.mod\
+                   m_comindx.mod m_commath.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getrname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+gsmoou.o         : m_bc4news.mod m_bcgsmu.mod m_bcycle.mod m_combuf.mod\
+                   m_comindx.mod m_commath.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getrname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+gsmoov.o         : m_bc4news.mod m_bcgsmv.mod m_bcycle.mod m_combuf.mod\
+                   m_comindx.mod m_commath.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getrname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+gsmoow.o         : m_bc4news.mod m_bcgsmw.mod m_bcycle.mod m_combuf.mod\
+                   m_comindx.mod m_commath.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getrname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+hculs.o          : m_comindx.mod m_commath.mod m_getiname.mod m_getrname.mod\
+                   m_lbculs.mod
+hculuvw.o        : m_comindx.mod m_commath.mod m_getiname.mod m_getrname.mod\
+                   m_lbculu.mod m_lbculv.mod m_lbculw.mod
+heatsfc.o        : m_comphy.mod
+heve.o           : m_advbspe.mod m_advbspt.mod m_buoywse.mod m_comindx.mod\
+                   m_diverpe.mod m_getiname.mod m_pgrad.mod m_steppe.mod\
+                   m_steppts.mod m_stepuv.mod m_stepwe.mod
+hevi.o           : m_advbspi.mod m_advbspt.mod m_buoywsi.mod m_comindx.mod\
+                   m_diverpih.mod m_diverpiv.mod m_getiname.mod m_pgrad.mod\
+                   m_pgradiv.mod m_steppi.mod m_steppts.mod m_stepuv.mod\
+                   m_stepwi.mod
+hint2d.o         : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_destroy.mod\
+                   m_getiname.mod m_getindx.mod
+hint3d.o         : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_destroy.mod\
+                   m_getiname.mod m_getindx.mod
+hintlnd.o        : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_destroy.mod\
+                   m_getiname.mod
+hintrdr.o        : m_commath.mod m_getiname.mod m_getindx.mod
+ini0name.o       : m_defname.mod m_inichar.mod
+inibinbw.o       : m_comindx.mod m_inidisbw.mod m_sadjstbw.mod m_sumbin.mod
+inidef.o         : m_defdim.mod m_defname.mod m_inichar.mod
+inidisbw.o       : m_commath.mod m_comphy.mod m_comtable.mod m_getrname.mod
+inierr.o         : m_comerr.mod
+inimod.o         : m_comdmp.mod m_comerr.mod m_comname.mod m_comsave.mod\
+                   m_inichar.mod
+inimpi_multi.o   : m_chkstd.mod m_commpi.mod m_defmpi.mod m_outstd01.mod
+inimpi_single.o  : m_commpi.mod m_outstd01.mod
+ininame.o        : m_comerr.mod m_comname.mod m_inichar.mod
+inisfc.o         : m_bc2d.mod m_bcycle.mod m_bcyclex.mod m_combuf.mod\
+                   m_comindx.mod m_commpi.mod m_comphy.mod m_convland.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod\
+                   m_rdsfc.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+initke.o         : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_commath.mod m_comphy.mod m_copy3d.mod m_getbufgx.mod\
+                   m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod m_getiname.mod\
+                   m_getrname.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+initund.o        : m_comindx.mod m_comphy.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_inichar.mod m_rdsstini.mod m_rdtund.mod
+inivar.o         : m_baserho.mod m_castvar.mod m_chkerr.mod m_chkstd.mod\
+                   m_comindx.mod m_commpi.mod m_destroy.mod m_getiname.mod\
+                   m_inisfc.mod m_initund.mod m_intrpsnd.mod m_lspdmp.mod\
+                   m_move2d.mod m_outgeo.mod m_rdaslini.mod m_rdgpvini.mod\
+                   m_rdres.mod m_rdsnd.mod m_set1d.mod m_setbase.mod\
+                   m_setbin.mod m_setvar1d.mod m_setvar3d.mod m_sndwave.mod\
+                   m_vintsnd.mod m_vspdmp.mod
+instvel.o        : m_getcname.mod m_inichar.mod
+intgdrv.o        : m_adjstuv.mod m_aerophy.mod m_cloudphy.mod m_comindx.mod\
+                   m_comkind.mod m_culintg.mod m_diabat.mod m_fdmdrv.mod\
+                   m_getiname.mod m_phasev.mod m_phasevbc.mod m_resetag.mod\
+                   m_satadjst.mod m_sfcphy.mod m_shift2nd.mod m_swp2nxt.mod\
+                   m_timeflt.mod m_totalqwi.mod
+intrpasl.o       : m_comindx.mod m_getrij.mod m_hint3d.mod m_var8w8s.mod\
+                   m_vint133a.mod
+intrpgpv.o       : m_comindx.mod m_getcname.mod m_getrij.mod m_hint3d.mod\
+                   m_inichar.mod m_var8w8s.mod m_var8w8u.mod m_var8w8v.mod\
+                   m_vint133g.mod
+intrprdr.o       : m_comindx.mod m_getcname.mod m_getrij.mod m_hintrdr.mod\
+                   m_inichar.mod m_var8w8s.mod m_var8w8u.mod m_var8w8v.mod\
+                   m_vint133r.mod
+intrpsnd.o       : m_bc8u.mod m_bc8v.mod m_bcyclex.mod m_bcycley.mod\
+                   m_combuf.mod m_comindx.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getcname.mod m_inichar.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod\
+                   m_var8w8s.mod m_var8w8u.mod m_var8w8v.mod m_vint13.mod
+jacobian.o       : m_bc8u.mod m_bc8v.mod m_bcyclex.mod m_bcycley.mod\
+                   m_combuf.mod m_comindx.mod m_getarea.mod m_getbufgx.mod\
+                   m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod m_getiname.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod\
+                   m_var8uvw.mod
+kh8uv.o          : m_getiname.mod
+lbcs.o           : m_commpi.mod m_getiname.mod
+lbcu.o           : m_commpi.mod m_getiname.mod
+lbculs.o         : m_commpi.mod m_getiname.mod
+lbculu.o         : m_commpi.mod m_getiname.mod
+lbculv.o         : m_commpi.mod m_getiname.mod
+lbculw.o         : m_commpi.mod m_getiname.mod
+lbcv.o           : m_commpi.mod m_getiname.mod
+lbcw.o           : m_commpi.mod m_getiname.mod
+lbcwc.o          : m_commpi.mod m_getiname.mod
+ll2xy.o          : m_commath.mod m_getindx.mod m_getiname.mod m_getrname.mod
+llnews.o         : m_commath.mod m_getiname.mod m_getrname.mod
+lspdmp.o         : m_commath.mod m_commpi.mod m_getiname.mod
+lspp.o           : m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod
+lspqv.o          : m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod
+lsps.o           : m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod
+lsps0.o          : m_getiname.mod m_getrname.mod
+lspuvw.o         : m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod
+mapfct.o         : m_bcyclex.mod m_bcycley.mod m_combuf.mod m_comindx.mod\
+                   m_commath.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_getrname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+masscon.o        : m_bc4news.mod m_bcycle.mod m_bcyclex.mod m_bcycley.mod\
+                   m_chkstd.mod m_cnt2phy.mod m_combuf.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_copy3d.mod m_diffequa.mod\
+                   m_fituvwc.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_getrname.mod m_outstd11.mod\
+                   m_phy2cnt.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_setcst3d.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod
+melting.o        : m_commath.mod m_comphy.mod
+more0q.o         : m_temparam.mod
+move2d.o         : m_getrname.mod
+mvrst.o          : m_chkerr.mod m_chkstd.mod m_comkind.mod m_commpi.mod\
+                   m_comname.mod m_cpondpe.mod m_destroy.mod m_getcname.mod\
+                   m_getiname.mod m_getunit.mod m_inichar.mod m_outstd03.mod\
+                   m_putunit.mod
+mxndrv.o         : m_chkstd.mod m_comindx.mod m_comkind.mod m_commpi.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod\
+                   m_outmxn.mod m_outstd12.mod m_totalq.mod
+ndgsat.o         : m_comindx.mod m_getcname.mod m_getetop.mod m_getiname.mod\
+                   m_getqvs.mod m_gettlcl.mod m_inichar.mod m_qv2rdr.mod
+ndgstep.o        : m_comkind.mod m_commath.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod
+newblk.o         : m_comphy.mod
+newblk_noevap.o  : m_comphy.mod
+newsindx.o       : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_destroy.mod\
+                   m_getiname.mod
+nlsmqv.o         : m_getrname.mod
+nlsms.o          : m_getrname.mod
+nlsmuvw.o        : m_getrname.mod
+nuc1stc.o        : m_commath.mod m_comphy.mod
+nuc1stv.o        : m_comphy.mod
+nuc2nd.o         : m_commath.mod m_comphy.mod
+opendmp.o        : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comdmp.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_outstd07.mod
+outasl.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outcap.o         : m_chkerr.mod m_commpi.mod m_cpondpe.mod m_destroy.mod
+outcheck.o       : m_chkerr.mod m_chkstd.mod m_comdmp.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getiname.mod m_outstd03.mod
+outctl.o         : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_comname.mod m_copy1d.mod\
+                   m_cpondpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_getunit.mod m_getz.mod m_inichar.mod\
+                   m_outstd03.mod m_paractl.mod m_putunit.mod m_stretch.mod
+outdmp.o         : m_comblk.mod m_comcapt.mod m_comdmp.mod m_comindx.mod\
+                   m_commath.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod m_outdmp2d.mod m_outdmp3d.mod m_rotuvm2s.mod\
+                   m_setcst2d.mod m_setcst3d.mod m_setproj.mod m_temparam.mod\
+                   m_totalq.mod m_totals.mod m_var8u8s.mod m_var8v8s.mod\
+                   m_var8w8s.mod m_vint31s.mod
+outdmp2d.o       : m_chkerr.mod m_comdmp.mod m_comindx.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod m_getiname.mod m_outcap.mod\
+                   m_outstd09.mod
+outdmp3d.o       : m_chkerr.mod m_comdmp.mod m_comindx.mod m_commpi.mod\
+                   m_cpondpe.mod m_destroy.mod m_getiname.mod m_outcap.mod\
+                   m_outstd09.mod
+outgeo.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comcapt.mod\
+                   m_comdmp.mod m_comkind.mod m_commpi.mod m_comname.mod\
+                   m_cpondpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outcap.mod m_outstd03.mod\
+                   m_outstd10.mod m_putunit.mod
+outgpv.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outllsw.o        : m_comindx.mod m_comkind.mod m_commpi.mod m_currpe.mod\
+                   m_getcname.mod m_getiname.mod m_getllsw.mod m_inichar.mod\
+                   m_outctl.mod m_outstd04.mod m_outstd05.mod m_outstd17.mod
+outmxn.o         : m_chkstd.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_getmxn.mod m_outstd12.mod
+outpbl.o         : m_bulksfc.mod m_comcapt.mod m_comdmp.mod m_comindx.mod\
+                   m_comphy.mod m_comtable.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_outdmp2d.mod m_rotuvm2s.mod m_setcst2d.mod\
+                   m_setproj.mod
+outrdr.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outres.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+outrst.o         : m_chkerr.mod m_chkstd.mod m_comindx.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outsfc.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outsst.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+outstd01.o       : m_comstd.mod
+outstd03.o       : m_comkind.mod m_outstd04.mod
+outstd04.o       : m_comkind.mod m_comstd.mod
+outstd05.o       : m_comstd.mod
+outstd06.o       : m_comkind.mod m_outstd05.mod
+outstd07.o       : m_getiname.mod
+outstd11.o       : m_comkind.mod m_outstd04.mod
+outstd12.o       : m_comkind.mod m_outstd04.mod
+outtrn.o         : m_chkerr.mod m_chkopen.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+paractl.o        : m_comindx.mod m_commath.mod m_commpi.mod m_currpe.mod\
+                   m_getiname.mod m_getrname.mod m_llnews.mod m_setproj.mod
+pbldrv.o         : m_comindx.mod m_comphy.mod m_eddypbl.mod m_getiname.mod\
+                   m_pblptv.mod m_pblqv.mod m_pblu.mod m_pblv.mod
+pblptv.o         : m_comindx.mod m_gaussel.mod m_getiname.mod m_getrname.mod\
+                   m_vbcs.mod
+pblqv.o          : m_comindx.mod m_gaussel.mod m_getiname.mod m_getrname.mod\
+                   m_vbcs.mod
+pblu.o           : m_bc8u.mod m_bcyclex.mod m_combuf.mod m_comindx.mod\
+                   m_gaussel.mod m_getbufgx.mod m_getbufsx.mod m_getiname.mod\
+                   m_getrname.mod m_putbufgx.mod m_putbufsx.mod m_shiftgx.mod\
+                   m_shiftsx.mod m_vbcu.mod
+pblv.o           : m_bc8v.mod m_bcycley.mod m_combuf.mod m_comindx.mod\
+                   m_gaussel.mod m_getbufgy.mod m_getbufsy.mod m_getiname.mod\
+                   m_getrname.mod m_putbufgy.mod m_putbufsy.mod m_shiftgy.mod\
+                   m_shiftsy.mod m_vbcv.mod
+pc2kg.o          : m_comphy.mod
+pgrad.o          : m_comindx.mod m_comphy.mod m_diver3d.mod m_getiname.mod\
+                   m_getrname.mod
+pgradiv.o        : m_getrname.mod
+phasev.o         : m_comindx.mod m_getiname.mod m_phvuvw.mod m_phvs.mod
+phasevbc.o       : m_comindx.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_phvbcuvw.mod m_phvbcs.mod
+phvbcs.o         : m_commath.mod m_commpi.mod m_getiname.mod m_getrname.mod
+phvbcuvw.o       : m_commath.mod m_commpi.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_inichar.mod
+phvs.o           : m_commath.mod m_commpi.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_inichar.mod
+phvuvw.o         : m_commath.mod m_commpi.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_inichar.mod
+phy2cnt.o        : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_lbcwc.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod m_vbcwc.mod
+phycood.o        : m_chkerr.mod m_comindx.mod m_commath.mod m_commpi.mod\
+                   m_copy1d.mod m_cpondpe.mod m_destroy.mod m_getiname.mod\
+                   m_getrname.mod m_stretch.mod
+prodctwg.o       : m_commath.mod m_comphy.mod
+putbufgx.o       : m_commpi.mod m_getiname.mod
+putbufgy.o       : m_commpi.mod m_getiname.mod
+putbufsx.o       : m_commpi.mod m_getiname.mod
+putbufsy.o       : m_commpi.mod m_getiname.mod
+putunit.o        : m_comionum.mod
+qp2rdr.o         : m_commath.mod m_getiname.mod
+qv2rdr.o         : m_comphy.mod m_getiname.mod m_temparam.mod
+radata.o         : m_allocgrp.mod m_allociot.mod m_allocrdr.mod m_chkkind.mod\
+                   m_comindx.mod m_comrdr.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_rdrdrv.mod m_setdays.mod m_setdim.mod m_setnlrdr.mod
+radiat.o         : m_comdays.mod m_commath.mod m_comphy.mod m_getiname.mod
+rbcpt.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcq.o           : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcqv.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcs.o           : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcs0.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcss.o          : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcu.o           : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcv.o           : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rbcw.o           : m_commpi.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_inichar.mod
+rdaslini.o       : m_adjstqa.mod m_bcasl.mod m_chkerr.mod m_chkfile.mod\
+                   m_chkstd.mod m_comindx.mod m_comkind.mod m_commpi.mod\
+                   m_comname.mod m_cpondpe.mod m_destroy.mod m_getcname.mod\
+                   m_getiname.mod m_getrname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod m_smooasl.mod
+rdaslnxt.o       : m_adjstqa.mod m_bcasl.mod m_chkerr.mod m_chkfile.mod\
+                   m_chkstd.mod m_comindx.mod m_comkind.mod m_commpi.mod\
+                   m_comname.mod m_comsave.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod m_setasl.mod\
+                   m_smooasl.mod
+rdcheck.o        : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+rdconf.o         : m_defname.mod m_destroy.mod
+rdgpvini.o       : m_adjstq.mod m_bcini.mod m_chkerr.mod m_chkfile.mod\
+                   m_chkmoist.mod m_chksat.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_comname.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst3d.mod m_smoogpv.mod
+rdgpvnxt.o       : m_adjstq.mod m_bcgpv.mod m_chkerr.mod m_chkfile.mod\
+                   m_chksat.mod m_chkstd.mod m_comindx.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_comsave.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_getiname.mod m_getrname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setgpv.mod m_smoogpv.mod
+rdgrp.o          : m_castgrp.mod m_chkerr.mod m_chkstd.mod m_comgrp.mod\
+                   m_comkind.mod m_commpi.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+rdrdrmrk.o       : m_bcrdr.mod m_chkerr.mod m_chkfile.mod m_chkstd.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_comname.mod\
+                   m_comsave.mod m_cpondpe.mod m_destroy.mod m_distrqp.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdrdrnxt.o       : m_bcrdrqp.mod m_chkerr.mod m_chkfile.mod m_chkstd.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_comname.mod\
+                   m_comsave.mod m_cpondpe.mod m_destroy.mod m_distrqp.mod\
+                   m_getcname.mod m_getrname.mod m_getiname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod m_setrdrqp.mod
+rdrdrv.o         : m_chkerr.mod m_chkrdr.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_currpe.mod m_dbz2kg.mod\
+                   m_destroy.mod m_getcname.mod m_getdate.mod m_getiname.mod\
+                   m_getrname.mod m_getxy.mod m_getz.mod m_getzph.mod\
+                   m_inichar.mod m_intrprdr.mod m_outrdr.mod m_outstd05.mod\
+                   m_rdradar.mod m_rdrstep.mod m_rotuvm2s.mod m_rotuvs2m.mod\
+                   m_setproj.mod m_vintrdr.mod m_xy2ll.mod
+rdres.o          : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdresrst.o       : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+rdrstep.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+rdsfc.o          : m_chkfile.mod m_chkerr.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+rdsfcdmp.o       : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdsnd.o          : m_comkind.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod
+rdsstini.o       : m_bcsst.mod m_chkerr.mod m_chkfile.mod m_chkstd.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_comname.mod\
+                   m_cpondpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getrname.mod m_getunit.mod m_inichar.mod m_outstd03.mod\
+                   m_putunit.mod
+rdsstnxt.o       : m_bcsst.mod m_chkerr.mod m_chkfile.mod m_chkstd.mod\
+                   m_comindx.mod m_comkind.mod m_commpi.mod m_comname.mod\
+                   m_comsave.mod m_cpondpe.mod m_destroy.mod m_getcname.mod\
+                   m_getiname.mod m_getrname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod m_setsst.mod
+rdtrn.o          : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+rdtund.o         : m_chkerr.mod m_chkfile.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_comname.mod m_cpondpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+reducelb.o       : m_commpi.mod m_defmpi.mod
+reducevb.o       : m_commpi.mod m_defmpi.mod
+remapbw.o        : m_commath.mod m_comphy.mod
+repdrv.o         : m_getcname.mod m_getiname.mod m_inichar.mod m_repsit3d.mod\
+                   m_repsit2d.mod
+repsit2d.o       : m_commpi.mod
+resetag.o        : m_commpi.mod
+rmres.o          : m_chkerr.mod m_chkstd.mod m_comkind.mod m_commpi.mod\
+                   m_comname.mod m_cpondpe.mod m_destroy.mod m_getcname.mod\
+                   m_getiname.mod m_getunit.mod m_inichar.mod m_outstd03.mod\
+                   m_putunit.mod
+rotuvm2s.o       : m_commath.mod m_getiname.mod m_getrname.mod
+rotuvs2m.o       : m_commath.mod m_getiname.mod m_getrname.mod
+roughitr.o       : m_bulksfc.mod m_chkitr.mod m_comphy.mod m_getrich.mod\
+                   m_setcst2d.mod
+roughnxt.o       : m_comphy.mod
+rstdrv.o         : m_comindx.mod m_comkind.mod m_commpi.mod m_currpe.mod\
+                   m_getiname.mod m_getrname.mod m_mvrst.mod m_outrst.mod\
+                   m_outstd05.mod m_rdresrst.mod m_repdrv.mod m_rmres.mod\
+                   m_rstindx.mod m_rststep.mod
+rstindx.o        : m_commpi.mod
+rstruct.o        : m_allocgrp.mod m_allociot.mod m_allocrst.mod m_chkkind.mod\
+                   m_comindx.mod m_comrst.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_rstdrv.mod m_setdim.mod m_setnlrst.mod
+rststep.o        : m_comkind.mod m_destroy.mod m_getrname.mod
+rstuvwc.o        : m_getiname.mod
+s2gpv.o          : m_getcname.mod m_inichar.mod
+sadjstbw.o       : m_comphy.mod m_getrname.mod
+satadjst.o       : m_comindx.mod m_getiname.mod m_getexner.mod m_siadjst.mod\
+                   m_swadjst.mod
+set1d.o          : m_chkerr.mod m_commath.mod m_commpi.mod m_comphy.mod\
+                   m_copy1d.mod m_cpondpe.mod m_destroy.mod m_getcname.mod\
+                   m_getrname.mod m_inichar.mod m_setcst1d.mod m_vextlow.mod
+setasl.o         : m_getrname.mod
+setbase.o        : m_bcbase.mod m_comindx.mod m_comphy.mod
+setbin.o         : m_combin.mod m_commath.mod m_comphy.mod m_comtable.mod\
+                   m_getrname.mod
+setblk.o         : m_commath.mod m_comphy.mod
+setcst1d.o       : m_comkind.mod
+setcst2d.o       : m_comkind.mod
+setcst3d.o       : m_comkind.mod
+setdays.o        : m_comdays.mod
+setdim.o         : m_comindx.mod m_commpi.mod m_defdim.mod m_getiname.mod
+setgpv.o         : m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod
+setgrid.o        : m_bc2d.mod m_bcycle.mod m_bcyclex.mod m_combuf.mod\
+                   m_comindx.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_gettrn.mod m_getxy.mod\
+                   m_getz.mod m_jacobian.mod m_mapfct.mod m_phycood.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_setcst2d.mod m_setcst3d.mod m_setproj.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod m_trilat.mod\
+                   m_xy2ll.mod
+sethalo.o        : m_chkerr.mod m_comgrp.mod m_comindx.mod m_commpi.mod\
+                   m_comname.mod m_cpondpe.mod m_defmpi.mod m_destroy.mod\
+                   m_getiname.mod
+setname.o        : m_castname.mod m_comindx.mod m_commpi.mod m_comname.mod\
+                   m_defname.mod
+setnlasl.o       : m_chkerr.mod m_chknlasl.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnlgpv.o       : m_chkerr.mod m_chknlgpv.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnlrdr.o       : m_chkerr.mod m_chknlrdr.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnlrst.o       : m_chkerr.mod m_chknlrst.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnlsfc.o       : m_chkerr.mod m_chknlsfc.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnlslv.o       : m_chkerr.mod m_chknlslv.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnltrn.o       : m_chkerr.mod m_chknltrn.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setnluni.o       : m_chkerr.mod m_chknluni.mod m_chkstd.mod m_comkind.mod\
+                   m_commpi.mod m_destroy.mod m_outstd04.mod m_outstd13.mod\
+                   m_rdconf.mod m_setname.mod
+setproj.o        : m_commath.mod m_comphy.mod m_getiname.mod m_getrname.mod
+setrdr.o         : m_bcrdr.mod m_castvar.mod m_chkerr.mod m_chkrdr.mod\
+                   m_chkstd.mod m_comindx.mod m_comkind.mod m_commpi.mod\
+                   m_comsave.mod m_dbz2kg.mod m_destroy.mod m_distrqp.mod\
+                   m_getcname.mod m_getdate.mod m_getiname.mod m_getrname.mod\
+                   m_getxy.mod m_getz.mod m_inichar.mod m_intrprdr.mod\
+                   m_rdradar.mod m_rotuvm2s.mod m_rotuvs2m.mod m_setproj.mod\
+                   m_vintrdr.mod m_xy2ll.mod
+setrdrqp.o       : m_commath.mod m_getiname.mod m_getrname.mod
+setref.o         : m_comcapt.mod m_comdays.mod m_commath.mod m_comtable.mod
+setsfc.o         : m_commath.mod m_comphy.mod m_getiname.mod
+setsst.o         : m_getrname.mod
+setvar1d.o       : m_comindx.mod m_commath.mod m_copy3d.mod m_getcname.mod\
+                   m_getiname.mod m_getpt0.mod m_getqt0.mod m_inichar.mod\
+                   m_setcst3d.mod m_setcst4d.mod m_shift2nd.mod
+setvar3d.o       : m_comindx.mod m_commath.mod m_copy3d.mod m_copy4d.mod\
+                   m_diagnci.mod m_diagni.mod m_diagnw.mod m_getcname.mod\
+                   m_getiname.mod m_getqt0.mod m_inichar.mod m_phy2cnt.mod\
+                   m_setcst3d.mod m_setcst4d.mod m_shift2nd.mod m_vbcp.mod\
+                   m_vbcs.mod m_vbcu.mod m_vbcv.mod m_vbcw.mod
+sfcdrv.o         : m_chkerr.mod m_chkmxn.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_cpondsfc.mod m_currpe.mod\
+                   m_destroy.mod m_estimsfc.mod m_getcname.mod m_getdate.mod\
+                   m_getiname.mod m_getrij.mod m_getrname.mod m_hint2d.mod\
+                   m_hintlnd.mod m_inichar.mod m_outsfc.mod m_outsst.mod\
+                   m_outstd05.mod m_outstd12.mod m_rdice.mod m_rdland.mod\
+                   m_rdsst.mod m_setproj.mod m_sststep.mod m_undefice.mod\
+                   m_undefsst.mod
+sfcflx.o         : m_bulksfc.mod m_comphy.mod
+sfcphy.o         : m_comindx.mod m_comkind.mod m_getiname.mod m_soildrv.mod
+shedding.o       : m_comphy.mod
+shift2nd.o       : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getiname.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod
+shiftgx.o        : m_commpi.mod m_defmpi.mod m_getiname.mod
+shiftgy.o        : m_commpi.mod m_defmpi.mod m_getiname.mod
+shiftsx.o        : m_commpi.mod m_defmpi.mod m_getiname.mod
+shiftsy.o        : m_commpi.mod m_defmpi.mod m_getiname.mod
+siadjst.o        : m_comphy.mod m_getrname.mod
+slvdrv.o         : m_abortslv.mod m_chkstd.mod m_closedmp.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_getcname.mod m_getdate.mod\
+                   m_getiname.mod m_gettime.mod m_inichar.mod m_instvel.mod\
+                   m_intgdrv.mod m_masscon.mod m_mxndrv.mod m_ndgstep.mod\
+                   m_opendmp.mod m_outcheck.mod m_outdmp.mod m_outres.mod\
+                   m_outstd05.mod m_outstd06.mod m_rdaslnxt.mod m_rdgpvnxt.mod\
+                   m_rdrdrmrk.mod m_rdrdrnxt.mod m_rdsstnxt.mod m_setrdr.mod\
+                   m_sfcphy.mod m_slvstep.mod m_timeint.mod
+slvstep.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+smalldrv.o       : m_comindx.mod m_copy3d.mod m_getiname.mod m_heve.mod\
+                   m_hevi.mod m_phy2cnt.mod
+smoo2p.o         : m_getrname.mod
+smoo2qv.o        : m_getrname.mod
+smoo2s.o         : m_getrname.mod
+smoo2uvw.o       : m_getrname.mod
+smoo4p.o         : m_comindx.mod m_getiname.mod m_getrname.mod
+smoo4qv.o        : m_comindx.mod m_getiname.mod m_getrname.mod
+smoo4s.o         : m_comindx.mod m_getiname.mod m_getrname.mod
+smoo4uvw.o       : m_comindx.mod m_getiname.mod m_getrname.mod
+smooasl.o        : m_comindx.mod m_getiname.mod m_gsmoos.mod
+smoogpv.o        : m_comindx.mod m_getcname.mod m_getiname.mod m_gsmoou.mod\
+                   m_gsmoov.mod m_gsmoos.mod m_gsmoow.mod m_inichar.mod
+sndwave.o        : m_comphy.mod
+soildrv.o        : m_chkrain.mod m_cloudcov.mod m_comindx.mod m_comkind.mod\
+                   m_forcesfc.mod m_getiname.mod m_getrich.mod m_getzlow.mod\
+                   m_heatsfc.mod m_outpbl.mod m_pbldrv.mod m_radiat.mod\
+                   m_roughitr.mod m_roughnxt.mod m_setsfc.mod m_sfcflx.mod\
+                   m_steptund.mod
+solver.o         : m_allocbuf.mod m_allociot.mod m_allocmph.mod m_allocslv.mod\
+                   m_chkbyte.mod m_chkkind.mod m_comindx.mod m_comslv.mod\
+                   m_currpe.mod m_defdim.mod m_endmpi.mod m_inidef.mod\
+                   m_inimod.mod m_inimpi.mod m_inivar.mod m_rdgrp.mod\
+                   m_setdim.mod m_setgrid.mod m_sethalo.mod m_setnlslv.mod\
+                   m_setref.mod m_slvdrv.mod
+sparprt.o        : m_vint13.mod
+srcblk.o         : m_aggregat.mod m_charging.mod m_collect.mod m_convers.mod\
+                   m_copy3d.mod m_depsit.mod m_distrpg.mod m_freezing.mod\
+                   m_melting.mod m_more0q.mod m_newblk.mod m_newblk_noevap.mod\
+                   m_nuc1stc.mod m_nuc1stv.mod m_nuc2nd.mod m_prodctwg.mod\
+                   m_setblk.mod m_setcst3d.mod m_shedding.mod m_temparam.mod
+sststep.o        : m_chkerr.mod m_comkind.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+stepcul.o        : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_copy3d.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getiname.mod m_hculs.mod m_hculuvw.mod\
+                   m_lbcs.mod m_lbcu.mod m_lbcv.mod m_lbcw.mod m_phy2cnt.mod\
+                   m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod\
+                   m_var8w8s.mod m_vbcp.mod m_vbcqcg.mod m_vbcs.mod m_vbcu.mod\
+                   m_vbcv.mod m_vbcw.mod m_vculs.mod m_vculs0.mod m_vculuvw.mod
+steppe.o         : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcss.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_lbcs.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_rbcss.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod m_vbcp.mod
+steppi.o         : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcss.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_lbcs.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_rbcss.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod m_vbcp.mod
+steppts.o        : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcss.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_lbcs.mod m_putbufgx.mod m_putbufgy.mod m_putbufsx.mod\
+                   m_putbufsy.mod m_rbcss.mod m_shiftgx.mod m_shiftgy.mod\
+                   m_shiftsx.mod m_shiftsy.mod m_vbcs.mod
+steps.o          : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcpt.mod m_exbcq.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lbcs.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_rbcpt.mod m_rbcq.mod\
+                   m_rbcqv.mod m_rbcs.mod m_rbcs0.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod m_vbcqcg.mod\
+                   m_vbcs.mod
+steptund.o       : m_comindx.mod m_comphy.mod m_gaussel.mod m_getiname.mod\
+                   m_getrname.mod
+stepuv.o         : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcu.mod m_exbcv.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getcname.mod m_getiname.mod\
+                   m_inichar.mod m_lbcu.mod m_lbcv.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_rbcu.mod\
+                   m_rbcv.mod m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod\
+                   m_shiftsy.mod m_vbcu.mod m_vbcv.mod
+stepwe.o         : m_bc4news.mod m_bcycle.mod m_combuf.mod m_comindx.mod\
+                   m_exbcw.mod m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod\
+                   m_getbufsy.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_lbcw.mod m_phy2cnt.mod m_putbufgx.mod m_putbufgy.mod\
+                   m_putbufsx.mod m_putbufsy.mod m_rbcw.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod m_vbcw.mod
+stepwi.o         : m_bbcw.mod m_bc4news.mod m_bcycle.mod m_combuf.mod\
+                   m_comindx.mod m_comphy.mod m_exbcw.mod m_gaussel.mod\
+                   m_getbufgx.mod m_getbufgy.mod m_getbufsx.mod m_getbufsy.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_gseidel.mod\
+                   m_inichar.mod m_lbcw.mod m_phy2cnt.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_rbcw.mod\
+                   m_shiftgx.mod m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod\
+                   m_vbcw.mod
+stretch.o        : m_chkerr.mod m_commath.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getiname.mod m_getrname.mod
+strsten.o        : m_bcten.mod m_comindx.mod m_getiname.mod
+surface.o        : m_allocgrp.mod m_allociot.mod m_allocsfc.mod m_chkkind.mod\
+                   m_comindx.mod m_comsfc.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_setdays.mod m_setdim.mod m_setnlsfc.mod m_sfcdrv.mod
+swadjst.o        : m_commath.mod m_comphy.mod m_getgamma.mod m_getiname.mod\
+                   m_getrname.mod
+swp2nxt.o        : m_getiname.mod
+t2pt.o           : m_comphy.mod
+termblk.o        : m_commath.mod m_comphy.mod m_getiname.mod m_getrname.mod\
+                   m_temparam.mod
+termbw2d.o       : m_commath.mod m_comphy.mod
+termbw3d.o       : m_commath.mod m_comphy.mod
+termqr.o         : m_comphy.mod m_getrname.mod
+terrain.o        : m_allocgrp.mod m_allociot.mod m_alloctrn.mod m_chkkind.mod\
+                   m_comindx.mod m_comtrn.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_setdim.mod m_setnltrn.mod m_trndrv.mod
+timeflt.o        : m_getiname.mod m_getrname.mod
+timeint.o        : m_comkind.mod m_getiname.mod m_getrname.mod
+tkeflx.o         : m_bc8w.mod m_comindx.mod m_getiname.mod m_getrname.mod
+totalqwi.o       : m_getiname.mod
+trilat.o         : m_commath.mod m_comphy.mod m_getiname.mod
+trndamp.o        : m_comindx.mod m_cpondtrn.mod m_getrij.mod m_gettrn.mod\
+                   m_getxy.mod m_hint2d.mod m_outtrn.mod m_rdsfcdmp.mod
+trndrv.o         : m_chkerr.mod m_chkmxn.mod m_chkstd.mod m_comindx.mod\
+                   m_comkind.mod m_commpi.mod m_currpe.mod m_destroy.mod\
+                   m_getrij.mod m_hint2d.mod m_outstd05.mod m_outstd12.mod\
+                   m_outtrn.mod m_rdheight.mod m_setproj.mod
+turbdrv.o        : m_bruntv.mod m_comindx.mod m_defomten.mod m_defomssq.mod\
+                   m_eddyvis.mod m_strsten.mod m_turbuvw.mod
+turbflx.o        : m_bc8w.mod m_comindx.mod m_getiname.mod m_getrname.mod
+turbs.o          : m_getiname.mod m_getrname.mod
+turbtke.o        : m_getiname.mod m_getrname.mod
+turbuvw.o        : m_getiname.mod m_getrname.mod
+undefice.o       : m_commath.mod m_destroy.mod
+undefsst.o       : m_commath.mod m_destroy.mod
+unidmpen.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unidmpgr.o       : m_comkind.mod m_commpi.mod m_currpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+unidmprd.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unidrv.o         : m_comindx.mod m_comkind.mod m_commpi.mod m_currpe.mod\
+                   m_getcname.mod m_getiname.mod m_getrname.mod m_inichar.mod\
+                   m_outllsw.mod m_outstd05.mod m_rdcheck.mod m_unidmpen.mod\
+                   m_unidmpgr.mod m_unidmprd.mod m_unigeoen.mod m_unigeogr.mod\
+                   m_unigeord.mod m_unimonen.mod m_unimongr.mod m_unimonrd.mod\
+                   m_unistep.mod
+unigeoen.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unigeogr.o       : m_comkind.mod m_commpi.mod m_currpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+unigeord.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unimonen.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unimongr.o       : m_comkind.mod m_commpi.mod m_currpe.mod m_destroy.mod\
+                   m_getcname.mod m_getiname.mod m_getunit.mod m_inichar.mod\
+                   m_outstd03.mod m_putunit.mod
+unimonrd.o       : m_comgrp.mod m_comkind.mod m_commath.mod m_commpi.mod\
+                   m_currpe.mod m_destroy.mod m_getcname.mod m_getiname.mod\
+                   m_getunit.mod m_inichar.mod m_outstd03.mod m_putunit.mod\
+                   m_setcst2d.mod
+unistep.o        : m_comkind.mod m_destroy.mod m_getcname.mod m_getrname.mod\
+                   m_inichar.mod
+unite.o          : m_allocgrp.mod m_allociot.mod m_allocuni.mod m_chkkind.mod\
+                   m_comindx.mod m_comuni.mod m_defdim.mod m_endmpi.mod\
+                   m_inidef.mod m_inimpi.mod m_ininame.mod m_rdgrp.mod\
+                   m_setdim.mod m_setnluni.mod m_unidrv.mod
+upwmbin.o        : m_comphy.mod m_getiname.mod m_getrname.mod
+upwnbin.o        : m_getrname.mod
+upwnp.o          : m_getrname.mod
+upwqcg.o         : m_getrname.mod
+upwqp.o          : m_comphy.mod m_getiname.mod m_getrname.mod
+uvw2gpv.o        : m_getcname.mod m_inichar.mod
+uvw2rdr.o        : m_commath.mod m_getcname.mod m_inichar.mod
+var8uvw.o        : m_bc8u.mod m_bc8v.mod m_bc8w.mod m_bcyclex.mod m_bcycley.mod\
+                   m_combuf.mod m_comindx.mod m_getbufgx.mod m_getbufgy.mod\
+                   m_getbufsx.mod m_getbufsy.mod m_getiname.mod m_putbufgx.mod\
+                   m_putbufgy.mod m_putbufsx.mod m_putbufsy.mod m_shiftgx.mod\
+                   m_shiftgy.mod m_shiftsx.mod m_shiftsy.mod
+vbcp.o           : m_getiname.mod
+vbcw.o           : m_getiname.mod
+vbcwc.o          : m_getiname.mod
+vculs.o          : m_commath.mod m_copy3d.mod m_getrname.mod
+vculs0.o         : m_commath.mod m_copy3d.mod m_getrname.mod
+vculuvw.o        : m_commath.mod m_copy3d.mod m_getrname.mod
+vextlow.o        : m_comphy.mod
+vextund.o        : m_chkerr.mod m_commath.mod m_commpi.mod m_cpondpe.mod\
+                   m_destroy.mod m_getcname.mod m_inichar.mod
+vint13.o         : m_getindx.mod
+vint133g.o       : m_getindx.mod
+vint133r.o       : m_commath.mod m_getindx.mod
+vint31g.o        : m_getcname.mod m_getiname.mod m_inichar.mod
+vint31r.o        : m_commath.mod
+vint31s.o        : m_commath.mod
+vint31uv.o       : m_getcname.mod m_getiname.mod m_inichar.mod
+vintbase.o       : m_chksat.mod m_comindx.mod m_copy2d.mod m_copy3d.mod\
+                   m_getcname.mod m_getiname.mod m_getkref.mod m_inichar.mod\
+                   m_vint31g.mod m_vint31uv.mod
+vintgpv.o        : m_chksat.mod m_comindx.mod m_comkind.mod m_copy2d.mod\
+                   m_copy3d.mod m_getcname.mod m_getiname.mod m_inichar.mod\
+                   m_vint13.mod m_vint31g.mod m_vint31uv.mod
+vintrdr.o        : m_copy3d.mod m_getcname.mod m_inichar.mod m_vint31r.mod
+vintsnd.o        : m_copy1d.mod m_getcname.mod m_inichar.mod m_vint11.mod
+vspdmp.o         : m_commath.mod m_getiname.mod m_getrname.mod
+vspp.o           : m_getcname.mod m_getiname.mod m_inichar.mod
+vspqv.o          : m_getcname.mod m_getiname.mod m_inichar.mod
+vsps.o           : m_getcname.mod m_getiname.mod m_inichar.mod
+vspuvw.o         : m_getcname.mod m_getiname.mod m_inichar.mod
+warmbin.o        : m_adjstbw.mod m_cg2mkbw.mod m_coalbw.mod m_combin.mod\
+                   m_comindx.mod m_depsitbw.mod m_fallbw.mod m_getta2d.mod\
+                   m_getta3d.mod m_inibinbw.mod m_mk2cgbw.mod m_termbw2d.mod
+warmblk.o        : m_collc2r.mod m_comindx.mod m_convc2r.mod m_evapr2v.mod\
+                   m_fallqr.mod m_termqr.mod
+xy2ij.o          : m_getindx.mod m_getrname.mod
+xy2ll.o          : m_commath.mod m_getindx.mod m_getiname.mod m_getrname.mod
+
+rdaero.o         : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdgpv.o          : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdheight.o       : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdice.o          : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdland.o         : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdradar.o        : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
+rdsst.o          : m_comkind.mod m_destroy.mod m_getname.mod m_getunit.mod\
+                   m_inichar.mod m_outstd03.mod m_putunit.mod
