@@ -10,7 +10,7 @@
 !                   2008/08/25, 2008/10/10, 2008/12/11, 2009/01/05,
 !                   2009/01/30, 2009/02/27, 2010/05/17, 2011/05/16,
 !                   2011/08/09, 2011/08/18, 2011/09/22, 2011/11/10,
-!                   2013/01/28, 2013/03/27
+!                   2013/01/28, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -78,6 +78,12 @@
 ! Internal private variable
 
       integer iid      ! Index of do loops
+      integer i_subdir  ! Subdirectory name (integer)
+      integer n_proc  ! Number of processes per subdirectory
+
+      character(len=10) c_subdir  ! Subdirectory name (character)
+      character(len=108) command  ! Command for making sub-directory
+
 
 !-----7--------------------------------------------------------------7--
 
@@ -297,6 +303,8 @@
         iname(idxsub_rst)=xsub_rst
         iname(idysub_rst)=ysub_rst
         iname(idrmopt_rst)=rmopt_rst
+
+        iname(idsubdir_proc)=subdir_proc
 
 ! -----
 
@@ -608,6 +616,48 @@
       call castname
 
 ! -----
+
+!! Set subdirectory when large number of processes
+
+      n_proc=iname(idsubdir_proc)
+
+      if(n_proc/=0) then
+
+! Set subdirectory name for solver
+
+        if(npe.gt.n_proc) then
+
+          i_subdir=mype/n_proc
+          i_subdir=i_subdir*n_proc
+          write(c_subdir, '(I10)') i_subdir
+          cname(idcrsdir)(1:108)=trim(cname(idcrsdir)(1:108))//trim(adjustl(c_subdir))//"/"
+          iname(idnccrs)=iname(idnccrs)+1+len_trim(adjustl(c_subdir))
+
+! -----
+
+! Generate subdirectory for preprocess
+
+        else if((mype.eq.root).and.(n_proc.gt.0)) then
+
+          i_subdir=0
+
+          do while(i_subdir.lt.numpe)
+
+            write(c_subdir, '(I10)') i_subdir
+            command="mkdir -p "//crsdir(1:nccrs)//trim(adjustl(c_subdir))
+            call execute_command_line(command)
+
+            i_subdir=i_subdir+n_proc
+
+          end do
+
+        end if
+
+! -----
+
+      end if
+
+!! -----
 
       end subroutine s_setname
 

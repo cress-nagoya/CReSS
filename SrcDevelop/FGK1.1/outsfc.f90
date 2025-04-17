@@ -10,7 +10,8 @@
 !                   2004/09/25, 2005/01/14, 2005/02/10, 2006/09/21,
 !                   2006/12/04, 2007/01/05, 2007/01/20, 2007/08/24,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/01/30,
-!                   2009/02/27, 2011/11/10, 2013/02/13, 2013/03/27
+!                   2009/02/27, 2011/11/10, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -82,8 +83,8 @@
 
 !***********************************************************************
       subroutine s_outsfc(fpexprim,fpcrsdir,fpsfcdat,fpncexp,fpnccrs,   &
-     &                    fpwlngth,ni,nj,land,albe,beta,z0m,z0h,        &
-     &                    cap,nuu,kai)
+     &                    fpwlngth,fpsubdir_proc,ni,nj,land,albe,beta,  &
+     &                    z0m,z0h,cap,nuu,kai)
 !***********************************************************************
 
 ! Input variables
@@ -105,6 +106,9 @@
 
       integer, intent(in) :: fpwlngth
                        ! Formal parameter of unique index of wlngth
+
+      integer, intent(in) :: fpsubdir_proc
+                       ! Formal parameter of unique index of subdir_proc
 
       integer, intent(in) :: ni
                        ! Model dimension in x direction
@@ -150,6 +154,9 @@
       character(len=108) sfcfl
                        ! Opened file name
 
+      character(len=10) c_subdir
+                       ! Subdirectory name (character)
+
       integer ncexp    ! Number of character of exprim
       integer nccrs    ! Number of character of crsdir
 
@@ -174,6 +181,11 @@
 
       integer broot    ! Broadcasting root
 
+      integer subdir_proc
+                      ! Number of processes per subdirectory
+
+      integer i_subdir ! Subdirectory name (integer)
+
 !-----7--------------------------------------------------------------7--
 
 !!! Open and read in the data to the interpolated surface file.
@@ -194,6 +206,7 @@
       call getiname(fpncexp,ncexp)
       call getiname(fpnccrs,nccrs)
       call getiname(fpwlngth,wlngth)
+      call getiname(fpsubdir_proc,subdir_proc)
 
 ! -----
 
@@ -215,6 +228,20 @@
       if(mype.eq.root) then
 
         call getunit(iosfc)
+
+      end if
+
+! -----
+
+! Make sub-directory.
+
+      if(subdir_proc.gt.0) then
+
+        i_subdir=mype/subdir_proc
+        i_subdir=i_subdir*subdir_proc
+        write(c_subdir, '(I10)') i_subdir
+        crsdir=crsdir(1:nccrs)//trim(adjustl(c_subdir))//"/"
+        nccrs=nccrs+1+len_trim(adjustl(c_subdir))
 
       end if
 
