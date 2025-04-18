@@ -10,7 +10,7 @@
 !                   2007/08/24, 2007/11/26, 2008/03/12, 2008/05/02,
 !                   2008/07/01, 2008/08/25, 2008/10/10, 2008/12/11,
 !                   2009/01/30, 2009/02/27, 2009/12/05, 2011/08/18,
-!                   2011/09/22, 2013/02/13, 2013/03/27
+!                   2011/09/22, 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -709,16 +709,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+27
+        ncfl=ncexp+32
 
-        write(rstfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i4.4,a9)')           &
+        write(rstfl(ncexp+1:ncexp+32),'(a3,i8.8,a3,i9.9,a9)')           &
      &            'res',ctime/1000_i8,'.pe',mysub_rst,'.bin.swap'
 
       else
 
-        ncfl=ncexp+36
+        ncfl=ncexp+41
 
-        write(rstfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i4.4),a9)')        &
+        write(rstfl(ncexp+1:ncexp+41),'(a3,i8.8,2(a4,i9.9),a9)')        &
      &     'res',ctime/1000_i8,'.grp',mygrp,'-sub',mysub_rst,'.bin.swap'
 
       end if
@@ -752,12 +752,12 @@
 
           if(ngrp.eq.1) then
 
-            write(rstfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(rstfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(rstfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(rstfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(rstfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(rstfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 

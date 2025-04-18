@@ -10,7 +10,8 @@
 !                   2004/09/25, 2005/01/14, 2005/02/10, 2006/09/21,
 !                   2006/12/04, 2007/01/05, 2007/01/20, 2007/08/24,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/01/30,
-!                   2009/02/27, 2011/11/10, 2013/02/13, 2013/03/27
+!                   2009/02/27, 2011/11/10, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -411,16 +412,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+18
+        ncfl=ncexp+23
 
-        write(sfcfl(ncexp+1:ncexp+18),'(a10,i4.4,a4)')                  &
+        write(sfcfl(ncexp+1:ncexp+23),'(a10,i9.9,a4)')                  &
      &                                'surface.pe',mysub,'.bin'
 
       else
 
-        ncfl=ncexp+27
+        ncfl=ncexp+32
 
-        write(sfcfl(ncexp+1:ncexp+27),'(a11,i4.4,a4,i4.4,a4)')          &
+        write(sfcfl(ncexp+1:ncexp+32),'(a11,i9.9,a4,i9.9,a4)')          &
      &                    'surface.grp',mygrp,'-sub',mysub,'.bin'
 
       end if
@@ -475,12 +476,12 @@
 
           if(ngrp.eq.1) then
 
-            write(sfcfl(ncexp+11:ncexp+14),'(a4)') 'XXXX'
+            write(sfcfl(ncexp+11:ncexp+19),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(sfcfl(ncexp+12:ncexp+15),'(a4)') 'XXXX'
-            write(sfcfl(ncexp+20:ncexp+24),'(a4)') 'YYYY'
+            write(sfcfl(ncexp+12:ncexp+20),'(a9)') 'XXXXXXXXX'
+            write(sfcfl(ncexp+20:ncexp+29),'(a9)') 'YYYYYYYYY'
 
           end if
 

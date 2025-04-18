@@ -4,7 +4,7 @@
 
 !     Author      : Sakakibara Atsushi
 !     Date        : 2011/11/10
-!     Modification: 2013/02/13, 2013/03/27
+!     Modification: 2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -397,16 +397,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+22
+        ncfl=ncexp+27
 
-        write(sstfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i4.4,a4)')           &
+        write(sstfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')           &
      &          'sst',int(stime+.1e0),'.pe',mysub,'.bin'
 
       else
 
-        ncfl=ncexp+31
+        ncfl=ncexp+36
 
-        write(sstfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i4.4),a4)')        &
+        write(sstfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')        &
      &     'sst',int(stime+.1e0),'.grp',mygrp,'-sub',mysub,'.bin'
 
       end if
@@ -440,12 +440,12 @@
 
           if(ngrp.eq.1) then
 
-            write(sstfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(sstfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(sstfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(sstfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(sstfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(sstfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 

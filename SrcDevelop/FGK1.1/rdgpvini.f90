@@ -19,7 +19,7 @@
 !                   2007/05/21, 2007/06/27, 2007/08/24, 2008/05/02,
 !                   2008/07/01, 2008/08/25, 2008/10/10, 2008/12/11,
 !                   2009/01/30, 2009/02/27, 2011/08/18, 2011/09/22,
-!                   2013/02/13, 2013/03/27
+!                   2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -491,16 +491,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+22
+        ncfl=ncexp+27
 
-        write(gpvfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i4.4,a4)')           &
+        write(gpvfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')           &
      &          'gpv',int(stime+.1e0),'.pe',mysub,'.bin'
 
       else
 
-        ncfl=ncexp+31
+        ncfl=ncexp+36
 
-        write(gpvfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i4.4),a4)')        &
+        write(gpvfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')        &
      &     'gpv',int(stime+.1e0),'.grp',mygrp,'-sub',mysub,'.bin'
 
       end if
@@ -534,12 +534,12 @@
 
           if(ngrp.eq.1) then
 
-            write(gpvfl(ncexp+15:ncexp+18),'(a4)') 'XXXX'
+            write(gpvfl(ncexp+15:ncexp+23),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(gpvfl(ncexp+16:ncexp+19),'(a4)') 'XXXX'
-            write(gpvfl(ncexp+24:ncexp+27),'(a4)') 'YYYY'
+            write(gpvfl(ncexp+16:ncexp+24),'(a9)') 'XXXXXXXXX'
+            write(gpvfl(ncexp+24:ncexp+32),'(a9)') 'YYYYYYYYY'
 
           end if
 

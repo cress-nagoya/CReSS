@@ -13,7 +13,8 @@
 !                   2007/01/05, 2007/01/20, 2007/04/11, 2007/05/14,
 !                   2007/08/24, 2008/01/11, 2008/04/17, 2008/05/02,
 !                   2008/08/25, 2008/10/10, 2009/01/30, 2009/02/27,
-!                   2011/08/09, 2011/09/22, 2013/02/13, 2013/03/27
+!                   2011/08/09, 2011/09/22, 2013/02/13, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -480,16 +481,16 @@
 
       if(ngrp.eq.1) then
 
-        ncfl=ncexp+20
+        ncfl=ncexp+25
 
-        write(geofl(ncexp+1:ncexp+16),'(a12,i4.4)')                     &
+        write(geofl(ncexp+1:ncexp+21),'(a12,i9.9)')                     &
      &                   'geography.pe',mysub
 
       else
 
-        ncfl=ncexp+29
+        ncfl=ncexp+34
 
-        write(geofl(ncexp+1:ncexp+25),'(a13,i4.4,a4,i4.4)')             &
+        write(geofl(ncexp+1:ncexp+30),'(a13,i9.9,a4,i9.9)')             &
      &                  'geography.grp',mygrp,'-sub',mysub
 
       end if
@@ -580,12 +581,12 @@
 
           if(ngrp.eq.1) then
 
-            write(geofl(ncexp+13:ncexp+16),'(a4)') 'XXXX'
+            write(geofl(ncexp+13:ncexp+21),'(a9)') 'XXXXXXXXX'
 
           else
 
-            write(geofl(ncexp+14:ncexp+17),'(a4)') 'XXXX'
-            write(geofl(ncexp+22:ncexp+25),'(a4)') 'YYYY'
+            write(geofl(ncexp+14:ncexp+22),'(a9)') 'XXXXXXXXX'
+            write(geofl(ncexp+22:ncexp+30),'(a9)') 'YYYYYYYYY'
 
           end if
 
