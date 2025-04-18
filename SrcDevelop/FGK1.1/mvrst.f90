@@ -854,14 +854,14 @@
 
       if(ngrp.eq.1) then
 
-        ncrst=ncexp+27
+        ncrst=ncexp+32
 
         write(rstfl(ncexp+1:ncexp+32),'(a3,i8.8,a3,i9.9,a9)')           &
      &            'res',ctime/1000_i8,'.pe',mysub_rst,'.bin.swap'
 
       else
 
-        ncrst=ncexp+36
+        ncrst=ncexp+41
 
         write(rstfl(ncexp+1:ncexp+41),'(a3,i8.8,2(a4,i9.9),a9)')        &
      &     'res',ctime/1000_i8,'.grp',mygrp,'-sub',mysub_rst,'.bin.swap'
@@ -909,16 +909,16 @@
 
       if(ngrp.eq.1) then
 
-        ncres=ncexp+22
+        ncres=ncexp+27
 
-        write(resfl(ncexp+1:ncexp+22),'(a3,i8.8,a3,i9.9,a4)')           &
+        write(resfl(ncexp+1:ncexp+27),'(a3,i8.8,a3,i9.9,a4)')           &
      &            'res',ctime/1000_i8,'.pe',mysub_rst,'.bin'
 
       else
 
-        ncres=ncexp+31
+        ncres=ncexp+36
 
-        write(resfl(ncexp+1:ncexp+31),'(a3,i8.8,2(a4,i9.9),a4)')        &
+        write(resfl(ncexp+1:ncexp+36),'(a3,i8.8,2(a4,i9.9),a4)')        &
      &       'res',ctime/1000_i8,'.grp',mygrp,'-sub',mysub_rst,'.bin'
 
       end if
