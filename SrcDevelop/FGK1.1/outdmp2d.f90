@@ -12,7 +12,7 @@
 !                   2004/09/25, 2005/02/10, 2006/09/21, 2006/12/04,
 !                   2007/01/05, 2007/01/20, 2008/01/11, 2008/04/17,
 !                   2008/05/02, 2008/07/01, 2008/08/25, 2008/10/10,
-!                   2009/02/27, 2011/09/22
+!                   2009/02/27, 2011/09/22, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -165,6 +165,11 @@
               write(io3d,rec=rec3d,iostat=stat,err=100)                 &
      &             ((.5e0*(var2d(i,j)+var2d(i+1,j)),i=2,ni-2),j=2,nj-2)
 
+            else if(dmpfmt.eq.3) then
+
+              write(io3d,iostat=stat,err=100)                 &
+     &             ((.5e0*(var2d(i,j)+var2d(i+1,j)),i=2,ni-2),j=2,nj-2)
+
             end if
 
 ! -----
@@ -185,6 +190,11 @@
               write(io3d,rec=rec3d,iostat=stat,err=100)                 &
      &             ((.5e0*(var2d(i,j)+var2d(i,j+1)),i=2,ni-2),j=2,nj-2)
 
+            else if(dmpfmt.eq.3) then
+
+              write(io3d,iostat=stat,err=100)                 &
+     &             ((.5e0*(var2d(i,j)+var2d(i,j+1)),i=2,ni-2),j=2,nj-2)
+
             end if
 
 ! -----
@@ -203,6 +213,11 @@
               rec3d=rec3d+1
 
               write(io3d,rec=rec3d,iostat=stat,err=100)                 &
+     &             ((var2d(i,j),i=2,ni-2),j=2,nj-2)
+
+            else if(dmpfmt.eq.3) then
+
+              write(io3d,iostat=stat,err=100)                 &
      &             ((var2d(i,j),i=2,ni-2),j=2,nj-2)
 
             end if
@@ -280,6 +295,11 @@
               write(io2d,rec=rec2d,iostat=stat,err=110)                 &
      &             ((.5e0*(var2d(i,j)+var2d(i+1,j)),i=2,ni-2),j=2,nj-2)
 
+            else if(dmpfmt.eq.3) then
+
+              write(io2d,iostat=stat,err=110)                 &
+     &             ((.5e0*(var2d(i,j)+var2d(i+1,j)),i=2,ni-2),j=2,nj-2)
+
             end if
 
 ! -----
@@ -300,6 +320,11 @@
               write(io2d,rec=rec2d,iostat=stat,err=110)                 &
      &             ((.5e0*(var2d(i,j)+var2d(i,j+1)),i=2,ni-2),j=2,nj-2)
 
+            else if(dmpfmt.eq.3) then
+
+              write(io2d,iostat=stat,err=110)                 &
+     &             ((.5e0*(var2d(i,j)+var2d(i,j+1)),i=2,ni-2),j=2,nj-2)
+
             end if
 
 ! -----
@@ -318,6 +343,11 @@
               rec2d=rec2d+1
 
               write(io2d,rec=rec2d,iostat=stat,err=110)                 &
+     &             ((var2d(i,j),i=2,ni-2),j=2,nj-2)
+
+            else if(dmpfmt.eq.3) then
+
+              write(io2d,iostat=stat,err=110)                 &
      &             ((var2d(i,j),i=2,ni-2),j=2,nj-2)
 
             end if

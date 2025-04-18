@@ -12,7 +12,7 @@
 !                   2004/06/10, 2004/09/25, 2005/02/10, 2006/09/21,
 !                   2007/01/05, 2007/01/20, 2008/01/11, 2008/04/17,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/02/27,
-!                   2011/09/22
+!                   2011/09/22, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -171,6 +171,11 @@
 
             end do
 
+          else if(dmpfmt.eq.3) then
+
+            write(io3d,iostat=stat,err=100)                 &
+     &          (((.5e0*(var3d(i,j,k)+var3d(i+1,j,k)),i=2,ni-2),j=2,nj-2),k=2,nk-2)
+
           end if
 
 ! -----
@@ -197,6 +202,11 @@
      &          ((.5e0*(var3d(i,j,k)+var3d(i,j+1,k)),i=2,ni-2),j=2,nj-2)
 
             end do
+
+          else if(dmpfmt.eq.3) then
+
+            write(io3d,iostat=stat,err=100)                 &
+     &          (((.5e0*(var3d(i,j,k)+var3d(i,j+1,k)),i=2,ni-2),j=2,nj-2),k=2,nk-2)
 
           end if
 
@@ -225,6 +235,11 @@
 
             end do
 
+          else if(dmpfmt.eq.3) then
+
+            write(io3d,iostat=stat,err=100)                 &
+     &          (((.5e0*(var3d(i,j,k)+var3d(i,j,k+1)),i=2,ni-2),j=2,nj-2),k=2,nk-2)
+
           end if
 
 ! -----
@@ -251,6 +266,11 @@
      &             ((var3d(i,j,k),i=2,ni-2),j=2,nj-2)
 
             end do
+
+          else if(dmpfmt.eq.3) then
+
+            write(io3d,iostat=stat,err=100)                 &
+     &          (((var3d(i,j,k),i=2,ni-2),j=2,nj-2),k=2,nk-2)
 
           end if
 

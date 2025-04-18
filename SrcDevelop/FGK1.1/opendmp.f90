@@ -16,7 +16,7 @@
 !                   2007/10/19, 2008/01/11, 2008/04/17, 2008/05/02,
 !                   2008/07/01, 2008/08/25, 2008/10/10, 2008/12/11,
 !                   2009/02/27, 2011/09/22, 2013/01/28, 2013/02/13,
-!                   2013/03/27
+!                   2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -639,6 +639,15 @@
 
             end if
 
+          else if(dmpfmt.eq.3) then
+
+            write(fl3d(nc3d-3:nc3d),'(a4)') '.bin'
+
+            open(io3d,iostat=stat,err=160,                              &
+     &           file=crsdir(1:nccrs)//fl3d(1:nc3d),                    &
+     &           status='new',access='stream',form='unformatted',       &
+     &           action='write')
+
           end if
 
   150     call chkerr(stat)
@@ -771,6 +780,15 @@
      &               recl=siz,action='write')
 
               end if
+
+            else if(dmpfmt.eq.3) then
+
+              write(fl2d(nc2d-3:nc2d),'(a4)') '.bin'
+
+              open(io2d,iostat=stat,err=190,                            &
+     &             file=crsdir(1:nccrs)//fl2d(1:nc2d),                  &
+     &             status='new',access='stream',form='unformatted',     &
+     &             action='write')
 
             end if
 
