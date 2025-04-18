@@ -26,7 +26,8 @@
 !                   2008/01/11, 2008/04/17, 2008/05/02, 2008/07/01,
 !                   2008/08/25, 2008/10/10, 2008/12/11, 2009/01/05,
 !                   2009/01/30, 2009/02/27, 2011/05/16, 2011/08/09,
-!                   2011/08/18, 2011/09/22, 2011/11/10, 2013/03/27
+!                   2011/08/18, 2011/09/22, 2011/11/10, 2013/03/27,
+!                   2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -736,6 +737,10 @@
       real flitv_uni   ! Time interval of original dumped file
       real flitv_rst   ! Time interval of original restart file
 
+      real bufsz_uni
+                       ! Read/write buffer size, using twice the size [GB]
+                       ! The higher the number of read/write, the faster the execution
+
 ! Module variables (subordinate variables)
 
       character(len=12) idate
@@ -925,7 +930,7 @@
      &                       ulat_ice,ulon_ice,riu_ice,rju_ice
 
       namelist /uniconf_uni/ fltyp_uni,flitv_uni,                       &
-     &                       rmopt_uni,uniopt_uni,ugroup_uni
+     &                       rmopt_uni,uniopt_uni,ugroup_uni,bufsz_uni
 
       namelist /rstconf_rst/ xsub_rst,ysub_rst,flitv_rst,rmopt_rst
 

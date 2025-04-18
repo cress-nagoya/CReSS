@@ -199,6 +199,11 @@
       real, intent(inout) :: var(2:ni_uni-2,2:nj_uni-2)
                        ! Optional variable in dumped file
 
+      integer :: ierr  ! MPI error status
+
+      integer :: current_mpi_size
+                       ! Use for MPI uniting
+
 !-----7--------------------------------------------------------------7--
 
 ! Initialize character variable.
@@ -219,6 +224,12 @@
 
 ! -----
 
+! Get the number of MPI processes.
+
+      call mpi_comm_size(mpi_comm_cress, current_mpi_size, ierr)
+
+! -----
+
 ! Set the common used variables.
 
       nx=(ni-3)*nisub+3
@@ -230,22 +241,24 @@
 
 !!!! Generate the united geography file from the dumped files.
 
-      if(fltyp_uni(1:3).eq.'all'.or.fltyp_uni(1:3).eq.'geo') then
+      if(mype.eq.0) then
+
+        if(fltyp_uni(1:3).eq.'all'.or.fltyp_uni(1:3).eq.'geo') then
 
 !!! Generate the united file from the dumped files.
 
 ! Check the geography data checking file.
 
-        if(iniopt.ne.12) then
+          if(iniopt.ne.12) then
 
-          if(abs(mod(uniopt_uni,10)).le.4.or.                           &
-     &      (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
+            if(abs(mod(uniopt_uni,10)).le.4.or.                           &
+      &      (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
 
-            call rdcheck(idexprim,idcrsdir,idncexp,idnccrs,'geo',0_i8)
+              call rdcheck(idexprim,idcrsdir,idncexp,idnccrs,'geo',0_i8)
+
+            end if
 
           end if
-
-        end if
 
 ! -----
 
@@ -253,42 +266,40 @@
 
 ! In the case of uniting all files to group domain files.
 
-        if(abs(mod(uniopt_uni,10)).eq.1.or.abs(mod(uniopt_uni,10)).eq.2 &
-     &    .or.abs(mod(uniopt_uni,10)).eq.5) then
+          if(abs(mod(uniopt_uni,10)).eq.1.or.abs(mod(uniopt_uni,10)).eq.2 &
+      &    .or.abs(mod(uniopt_uni,10)).eq.5) then
 
-          if(nsub.gt.1) then
+            if(nsub.gt.1) then
 
-            do mysrl=0,nsrl-1
+              do mysrl=0,nsrl-1
 
-              call currpe('unite   ',5,'mygrp')
+                call currpe('unite   ',5,'mygrp')
 
-              call unigeogr(idexprim,idcrsdir,idncexp,idnccrs,idwlngth, &
-     &                      idrmopt_uni,idsubdir_proc,                  &
-     &                      nx,ny,ni,nj,ni_uni,nj_uni,var,              &
-     &                      nio_uni,iodmp)
+                call unigeogr(idexprim,idcrsdir,idncexp,idnccrs,idwlngth, &
+      &                      idrmopt_uni,nx,ny,ni,nj,ni_uni,nj_uni,var,  &
+      &                      nio_uni,iodmp)
 
-            end do
+              end do
 
-          end if
+            end if
 
 ! -----
 
 ! In the case of uniting specified files to group domain file.
 
-        else if(abs(mod(uniopt_uni,10)).eq.6) then
+          else if(abs(mod(uniopt_uni,10)).eq.6) then
 
-          if(nsub.gt.1) then
+            if(nsub.gt.1) then
 
-            mygrp=ugroup_uni
+              mygrp=ugroup_uni
 
-            call unigeogr(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,   &
-     &                    idrmopt_uni,idsubdir_proc,                    &
-     &                    nx,ny,ni,nj,ni_uni,nj_uni,var,                &
-     &                    nio_uni,iodmp)
+              call unigeogr(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,   &
+      &                    idrmopt_uni,nx,ny,ni,nj,ni_uni,nj_uni,var,    &
+      &                    nio_uni,iodmp)
+
+            end if
 
           end if
-
-        end if
 
 ! -----
 
@@ -296,26 +307,26 @@
 
 ! Generate the united file from the dumped files in entire domain.
 
-        if(abs(mod(uniopt_uni,10)).eq.1                                 &
-     &    .or.abs(mod(uniopt_uni,10)).eq.3) then
+          if(abs(mod(uniopt_uni,10)).eq.1                                 &
+      &    .or.abs(mod(uniopt_uni,10)).eq.3) then
 
-          call unigeoen(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,     &
-     &                  idrmopt_uni,nx,ny,var,nio_uni,iodmp)
+            call unigeoen(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,     &
+      &                  idrmopt_uni,nx,ny,var,nio_uni,iodmp)
 
-        end if
+          end if
 
 ! -----
 
 ! Generate the united file from the dumped files in reductional entire
 ! domain.
 
-        if(abs(mod(uniopt_uni,10)).eq.2                                 &
-     &    .or.abs(mod(uniopt_uni,10)).eq.4) then
+          if(abs(mod(uniopt_uni,10)).eq.2                                 &
+      &    .or.abs(mod(uniopt_uni,10)).eq.4) then
 
-          call unigeord(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,     &
-     &                  idrmopt_uni,nx,ny,var,nio_uni,iodmp)
+            call unigeord(idexprim,idcrsdir,idncexp,idnccrs,idwlngth,     &
+      &                  idrmopt_uni,nx,ny,var,nio_uni,iodmp)
 
-        end if
+          end if
 
 ! -----
 
@@ -324,15 +335,17 @@
 ! Read in the latitude and the longitude at south-west corner to
 ! standard i/o.
 
-        if(abs(mod(uniopt_uni,10)).le.4.or.                             &
-     &    (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
+          if(abs(mod(uniopt_uni,10)).le.4.or.                             &
+      &    (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
 
-          call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,               &
-     &                 'geo',1_i8,1_i8,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
+            call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,               &
+      &                 'geo',1_i8,1_i8,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
 
-        end if
+          end if
 
 ! -----
+
+        end if
 
       end if
 
@@ -358,7 +371,7 @@
 
 !!! Generate the united file from the dumped files.
 
-        do it=nstp0,nstp1
+        do it = mype+nstp0,nstp1,current_mpi_size
 
 ! Calculate the current forecast time.
 
@@ -420,7 +433,7 @@
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
      &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
-     &                          idsubdir_proc,ctime,nx,ny,              &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end do
@@ -435,7 +448,7 @@
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
      &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
-     &                          idsubdir_proc,ctime,nx,ny,              &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                   end do
@@ -449,9 +462,9 @@
                     call currpe('unite   ',5,'mygrp')
 
                     call unimongr(idexprim,idcrsdir,idncexp,idnccrs,    &
-     &                            idwlngth,idrmopt_uni,idbufsz_uni,     &
-     &                            idsubdir_proc,ctime,nx,ny,            &
-     &                            ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
+    &                            idwlngth,idrmopt_uni,idbufsz_uni,      &
+    &                            ctime,nx,ny,                           &
+    &                            ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                   end do
 
@@ -475,7 +488,7 @@
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
      &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
-     &                          idsubdir_proc,ctime,nx,ny,              &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
               else
 
@@ -483,7 +496,7 @@
 
                   call unidmpgr(idexprim,idcrsdir,idncexp,idnccrs,      &
      &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
-     &                          idsubdir_proc,ctime,nx,ny,              &
+     &                          ctime,nx,ny,                            &
      &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end if
@@ -491,9 +504,9 @@
                 if(fltyp_uni(1:3).ne.'dmp') then
 
                   call unimongr(idexprim,idcrsdir,idncexp,idnccrs,      &
-     &                          idwlngth,idrmopt_uni,idbufsz_uni,       &
-     &                          idbufsz_uni,ctime,nx,ny,                &
-     &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
+    &                          idwlngth,idrmopt_uni,idbufsz_uni,        &
+    &                          ctime,nx,ny,                             &
+    &                          ni,nj,ni_uni,nj_uni,var,nio_uni,iodmp)
 
                 end if
 
@@ -589,27 +602,31 @@
 ! Read in the latitude and the longitude at south-west corner to
 ! standard i/o.
 
-        if(abs(mod(uniopt_uni,10)).le.4.or.                             &
-     &    (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
+        if(mype.eq.0) then
 
-          if(dmpmon.eq.0) then
+          if(abs(mod(uniopt_uni,10)).le.4.or.                             &
+      &    (ngrp.eq.1.and.abs(mod(uniopt_uni,10)).ge.5)) then
 
-            call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,             &
-     &                   'dmp',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
+            if(dmpmon.eq.0) then
 
-          else
+              call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,             &
+      &                   'dmp',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
 
-            if(fltyp_uni(1:3).ne.'mon') then
+            else
 
-              call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,           &
-     &                   'dmp',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
+              if(fltyp_uni(1:3).ne.'mon') then
 
-            end if
+                call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,           &
+      &                   'dmp',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
 
-            if(fltyp_uni(1:3).ne.'dmp') then
+              end if
 
-              call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,           &
-     &                   'mon',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
+              if(fltyp_uni(1:3).ne.'dmp') then
+
+                call outllsw(idfltyp_uni,iddmpmon,iduniopt_uni,           &
+      &                   'mon',nstp0,nstp1,ni,nj,nk,tmp1,tmp2,tmp3,tmp4)
+
+              end if
 
             end if
 

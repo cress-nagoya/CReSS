@@ -14,7 +14,7 @@
 !                   2006/09/30, 2006/12/04, 2007/01/05, 2007/01/20,
 !                   2007/04/11, 2007/05/14, 2007/05/21, 2007/08/24,
 !                   2008/05/02, 2008/08/25, 2008/10/10, 2009/02/27,
-!                   2013/02/13, 2013/03/27
+!                   2013/02/13, 2013/03/27, 2025/03/25
 
 !-----7--1----+----2----+----3----+----4----+----5----+----6----+----7--
 
@@ -83,7 +83,8 @@
 
 !***********************************************************************
       subroutine s_unigeogr(fpexprim,fpcrsdir,fpncexp,fpnccrs,          &
-     &                      fpwlngth,fprmopt_uni,nx,ny,ni,nj,           &
+     &                      fpwlngth,fprmopt_uni,fpsubdir_proc,         &
+     &                      nx,ny,ni,nj,                                &
      &                      ni_uni,nj_uni,var,nio_uni,iodmp)
 !***********************************************************************
 
@@ -106,6 +107,9 @@
 
       integer, intent(in) :: fprmopt_uni
                        ! Formal parameter of unique index of rmopt_uni
+
+      integer, intent(in) :: fpsubdir_proc
+                       ! Formal parameter of unique index of subdir_proc
 
       integer, intent(in) :: nx
                        ! Composite model dimension in x direction
@@ -141,6 +145,9 @@
 
       character(len=108) dmpfl
                        ! Name of dumped file
+
+      character(len=10) c_subdir
+                       ! Subdirectory name (character)
 
       integer ncexp    ! Number of character of exprim
       integer nccrs    ! Number of character of crsdir
@@ -180,6 +187,10 @@
 
       integer iouni    ! Unit number of united file
 
+      integer i_subdir ! Subdirectory name (integer)
+
+      integer n_proc   ! Number of processes per subdirectory
+
       integer, intent(inout) :: iodmp(0:nio_uni)
                        ! Unit number of dumped file
 
@@ -203,6 +214,7 @@
       call getiname(fpnccrs,nccrs)
       call getiname(fpwlngth,wlngth)
       call getiname(fprmopt_uni,rmopt_uni)
+      call getiname(fpsubdir_proc,n_proc)
 
 ! -----
 
@@ -323,19 +335,46 @@
 
             end if
 
-            if(rmopt_uni.eq.1) then
+            if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-              open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
-     &             status='old',access='direct',form='unformatted',     &
-     &             recl=sizdmp,action='readwrite')
+              i_subdir=mysub/n_proc
+              i_subdir=i_subdir*n_proc
+              write(c_subdir, '(I10)') i_subdir
+              c_subdir=trim(adjustl(c_subdir))//"/"
+
+              if(rmopt_uni.eq.1) then
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='readwrite')
+
+              else
+
+                open(iodmp(0),iostat=stat,err=110,                        &
+     &               file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &               status='old',access='direct',form='unformatted',     &
+     &               recl=sizdmp,action='read')
+
+              end if
 
             else
 
-              open(iodmp(0),iostat=stat,err=110,                        &
-     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                &
-     &             status='old',access='direct',form='unformatted',     &
-     &             recl=sizdmp,action='read')
+              if(rmopt_uni.eq.1) then
+
+                open(iodmp(0),iostat=stat,err=110,                      &
+     &               file=crsdir(1:nccrs)//dmpfl(1:ncdmp),              &
+     &               status='old',access='direct',form='unformatted',   &
+     &               recl=sizdmp,action='readwrite')
+
+              else
+
+                open(iodmp(0),iostat=stat,err=110,                      &
+     &               file=crsdir(1:nccrs)//dmpfl(1:ncdmp),              &
+     &               status='old',access='direct',form='unformatted',   &
+     &               recl=sizdmp,action='read')
+
+              end if
 
             end if
 
@@ -473,19 +512,47 @@
 
               write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
 
-              if(rmopt_uni.eq.1) then
+              if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-               open(iodmp(isub),iostat=stat,err=140,                    &
-     &              file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
-     &              status='old',access='direct',form='unformatted',    &
-     &              recl=sizdmp,action='readwrite')
+                i_subdir=mysub/n_proc
+                i_subdir=i_subdir*n_proc
+                write(c_subdir, '(I10)') i_subdir
+                c_subdir=trim(adjustl(c_subdir))//"/"
+
+
+                if(rmopt_uni.eq.1) then
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='readwrite')
+
+                else
+
+                 open(iodmp(isub),iostat=stat,err=140,                     &
+     &                file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),&
+     &                status='old',access='direct',form='unformatted',     &
+     &                recl=sizdmp,action='read')
+
+                end if
 
               else
 
-               open(iodmp(isub),iostat=stat,err=140,                    &
-     &              file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
-     &              status='old',access='direct',form='unformatted',    &
-     &              recl=sizdmp,action='read')
+                if(rmopt_uni.eq.1) then
+
+                 open(iodmp(isub),iostat=stat,err=140,                    &
+     &                file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
+     &                status='old',access='direct',form='unformatted',    &
+     &                recl=sizdmp,action='readwrite')
+
+                else
+
+                 open(iodmp(isub),iostat=stat,err=140,                    &
+     &                file=crsdir(1:nccrs)//dmpfl(1:ncdmp),               &
+     &                status='old',access='direct',form='unformatted',    &
+     &                recl=sizdmp,action='read')
+
+                end if
 
               end if
 
@@ -637,19 +704,46 @@
 
           write(dmpfl(ncdmp-7:ncdmp),'(i4.4,a4)') mysub,'.bin'
 
-          if(rmopt_uni.eq.1) then
+          if((nsub.gt.n_proc).and.(n_proc/=0)) then
 
-            open(iodmp(mysub),iostat=stat,err=170,                      &
-     &           file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
-     &           status='old',access='direct',form='unformatted',       &
-     &           recl=sizdmp,action='readwrite')
+              i_subdir=mysub/n_proc
+              i_subdir=i_subdir*n_proc
+              write(c_subdir, '(I10)') i_subdir
+              c_subdir=trim(adjustl(c_subdir))//"/"
+
+            if(rmopt_uni.eq.1) then
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='readwrite')
+
+            else
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//trim(c_subdir)//dmpfl(1:ncdmp),  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='read')
+
+            end if
 
           else
 
-            open(iodmp(mysub),iostat=stat,err=170,                      &
-     &           file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
-     &           status='old',access='direct',form='unformatted',       &
-     &           recl=sizdmp,action='read')
+            if(rmopt_uni.eq.1) then
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='readwrite')
+
+            else
+
+              open(iodmp(mysub),iostat=stat,err=170,                      &
+     &             file=crsdir(1:nccrs)//dmpfl(1:ncdmp),                  &
+     &             status='old',access='direct',form='unformatted',       &
+     &             recl=sizdmp,action='read')
+
+            end if
 
           end if
 
